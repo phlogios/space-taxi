@@ -3,6 +3,7 @@ guid: f07bfe1175da213488aa8905cd025461
 TextureImporter:
   fileIDToRecycleName:
     21300000: cab
+    21300002: Ship
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

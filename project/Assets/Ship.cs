@@ -12,7 +12,6 @@ public class Ship : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKey(KeyCode.LeftArrow)) {
-			Debug.Log("hnnngg");
 			rigidbody2D.AddForceAtPosition(
 				transform.up * force * Time.deltaTime, transform.TransformPoint(0.25f,0,0));
 		}
