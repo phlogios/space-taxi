@@ -14,11 +14,22 @@ public class Ship : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		bool thrustingL = Input.GetKey(KeyCode.LeftArrow) && !engineLeft.GetComponent<Part>().broken;
-		bool thrustingR = Input.GetKey(KeyCode.RightArrow) && !engineRight.GetComponent<Part>().broken;
+		bool pressingL = Input.GetKey(KeyCode.LeftArrow);
+		bool pressingR = Input.GetKey(KeyCode.RightArrow);
+		foreach(Touch touch in Input.touches) {
+			if(touch.position.x / Screen.width > 0.5f) {
+				pressingR = true;	
+			}
+			else {
+				pressingL = true;
+			}
+		}
 		
-		engineLeft.GetComponentInChildren<ThrusterFX>().on  = thrustingL;
-		engineRight.GetComponentInChildren<ThrusterFX>().on = thrustingR;
+		bool thrustingL = pressingL && !engineLeft.GetComponent<Part>().broken;
+		bool thrustingR = pressingR && !engineRight.GetComponent<Part>().broken;
+		
+		engineRight.GetComponentInChildren<ThrusterFX>().on  = thrustingL;
+		engineLeft.GetComponentInChildren<ThrusterFX>().on = thrustingR;
 		
 		if(thrustingL) {
 			rigidbody2D.AddForceAtPosition(
