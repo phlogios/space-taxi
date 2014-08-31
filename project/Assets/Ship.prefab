@@ -411,10 +411,7 @@ MonoBehaviour:
   cannon: {fileID: 11400020}
   bulletPrefab: {fileID: 400000, guid: a6e04fd3cb713cc41a0dbcb6c55457a4, type: 2}
   spawnEffect: {fileID: 400000, guid: 75f42826416f0094ca12bf89ba9bfe74, type: 2}
-<<<<<<< HEAD
-=======
   explosion: {fileID: 0}
->>>>>>> explosion logic
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
