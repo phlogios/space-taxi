@@ -2,6 +2,11 @@
 using System.Collections;
 
 public class Ship : MonoBehaviour {
+	
+	public string buttonLeft = "PL1Left";
+	public string buttonRight = "PL1Right";
+	public string buttonShoot = "PL1Shoot";
+	
 	public float force;
 	public Engine engineLeft;
 	public Engine engineRight;
@@ -14,8 +19,8 @@ public class Ship : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		bool pressingL = Input.GetKey(KeyCode.LeftArrow);
-		bool pressingR = Input.GetKey(KeyCode.RightArrow);
+		bool pressingL = Input.GetButton(buttonLeft);
+		bool pressingR = Input.GetButton(buttonRight);
 		foreach(Touch touch in Input.touches) {
 			if(touch.position.x / Screen.width > 0.5f) {
 				pressingR = true;	
@@ -25,8 +30,8 @@ public class Ship : MonoBehaviour {
 			}
 		}
 		
-		bool thrustingL = pressingL && !engineLeft.GetComponent<Part>().broken;
-		bool thrustingR = pressingR && !engineRight.GetComponent<Part>().broken;
+		bool thrustingL = pressingL && !engineRight.GetComponent<Part>().broken;
+		bool thrustingR = pressingR && !engineLeft.GetComponent<Part>().broken;
 		
 		engineRight.GetComponentInChildren<ThrusterFX>().on  = thrustingL;
 		engineLeft.GetComponentInChildren<ThrusterFX>().on = thrustingR;
