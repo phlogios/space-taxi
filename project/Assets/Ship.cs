@@ -5,7 +5,10 @@ public class Ship : MonoBehaviour {
 	
 	public float bulletSpeed = 2;
 	public float shootInterval = 0.5f;
-	public float force;
+	public float force = 100;
+    public float recoil = 1500;
+    public int maxAmmo = 3;
+    public float reloadTime = 3;
 	
 	public string buttonLeft = "PL1Left";
 	public string buttonRight = "PL1Right";
@@ -21,6 +24,8 @@ public class Ship : MonoBehaviour {
     public Transform explosion;
 	
 	float shootCooldown;
+    float reloadProgress;
+    int ammo;
 	
 	void Start () {
 		respawn();
@@ -28,6 +33,8 @@ public class Ship : MonoBehaviour {
 	
 	public void respawn() {
 		shootCooldown = 0.0f;
+        reloadProgress = 0.0f;
+        ammo = maxAmmo;
 		
 		Vector2 spawnPos = Vector2.zero;
 		Ship[] ships = GameObject.FindObjectsOfType<Ship>();
@@ -91,9 +98,10 @@ public class Ship : MonoBehaviour {
 		
 		//SHOOTING
 		shootCooldown -= Time.deltaTime;
-		if(Input.GetButton(buttonShoot) && !cannon.broken) {
+		if(Input.GetButton(buttonShoot) && !cannon.broken && ammo > 0) {
 			if(shootCooldown <= 0) {
 				shootCooldown = shootInterval;
+                ammo--;
 				
 				Transform bulletObj = GameObject.Instantiate(bulletPrefab) as Transform;
 				bulletObj.transform.position = transform.position + 0.4f * transform.up;
@@ -101,12 +109,25 @@ public class Ship : MonoBehaviour {
 											+ (Vector2)transform.up * bulletSpeed
 											- 0.4f * (Vector2)transform.right * rigidbody2D.angularVelocity * Mathf.Deg2Rad;
 				
+                //apply recoil
+                rigidbody2D.AddForceAtPosition(-transform.up * recoil * Time.deltaTime, transform.TransformPoint(0, 1, 0));
+
 				//disable collision with self
 				foreach(Collider2D ownCollider in GetComponentsInChildren<Collider2D>()) {
 					Physics2D.IgnoreCollision(bulletObj.collider2D, ownCollider);
 				}
 			}
 		}
+
+        if (ammo <= 0)
+        {
+            reloadProgress += Time.deltaTime;
+            if (reloadProgress > reloadTime)
+            {
+                reloadProgress = 0.0f;
+                ammo = maxAmmo;
+            }
+        }
 		
 		//DEATH
 		if(cockpit.broken || Input.GetButtonDown(buttonSelfDestroy)) {

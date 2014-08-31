@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Bullet : MonoBehaviour {
 
+    public Transform dinkEffect;
 	// Use this for initialization
 	void Start () {
 	
@@ -14,6 +15,11 @@ public class Bullet : MonoBehaviour {
 	}
 	
 	void OnCollisionEnter2D(Collision2D col) {
+        Part part = col.contacts[0].collider.GetComponent<Part>();
+        if (part != null)
+        {
+            Instantiate(dinkEffect, transform.position, Quaternion.identity);
+        }
 		Destroy(gameObject);
 	}
 }

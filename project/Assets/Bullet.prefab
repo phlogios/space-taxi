@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31f0909e3c165e459336b36984fdc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dinkEffect: {fileID: 400000, guid: 8a255d40dc7ebd949829f91ced71b1d3, type: 2}
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

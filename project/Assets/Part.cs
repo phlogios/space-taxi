@@ -4,6 +4,7 @@ using System.Collections;
 public class Part : MonoBehaviour {
 	
 	public int maxhp = 3;
+    public int explodehp = -5;
 	public Transform partExplosion;
 	
 	public bool broken {
@@ -33,15 +34,15 @@ public class Part : MonoBehaviour {
 			hp -= 1;
 			Debug.Log("1 Dmg (bullet)");
 		}
-		else if(velocity > 7) {
+		else if(velocity > 5) {
 			hp -= 6;
 			Debug.Log("6 Dmg");
 		}
-		else if(velocity > 3.5f) {
+		else if(velocity > 2.5f) {
 			hp -= 5;
 			Debug.Log("4 Dmg");
 		}
-		else if(velocity > 1.6f) {
+		else if(velocity > 1.4f) {
 			hp -= 2;
 			Debug.Log("2 Dmg");
 		}
@@ -53,7 +54,7 @@ public class Part : MonoBehaviour {
 			Debug.Log("0 Dmg");
 		}
 		
-		if(hp <= -5) {
+		if(hp <= explodehp) {
 			gameObject.SetActive(false);
 			GameObject.Instantiate(partExplosion, transform.position, Quaternion.identity);
 		}
