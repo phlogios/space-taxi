@@ -4,11 +4,12 @@ using System.Collections;
 public class Bullet : MonoBehaviour {
 
     public Transform dinkEffect;
-
+	public Transform bulletSound;
+	
     public Ship shooter;
 	// Use this for initialization
 	void Start () {
-	
+		Instantiate(bulletSound);
 	}
 	
 	// Update is called once per frame
