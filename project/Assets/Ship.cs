@@ -72,7 +72,7 @@ public class Ship : MonoBehaviour {
 				Transform bulletObj = GameObject.Instantiate(bulletPrefab) as Transform;
 				bulletObj.transform.position = transform.position;
 				bulletObj.rigidbody2D.velocity = rigidbody2D.velocity
-											+ (Vector2)transform.forward * bulletSpeed;
+											+ (Vector2)transform.up * bulletSpeed;
 				
 				//disable collision with self
 				foreach(Collider2D ownCollider in GetComponentsInChildren<Collider2D>()) {

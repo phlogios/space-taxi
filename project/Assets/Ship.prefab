@@ -357,8 +357,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd832ba904ff994c9682e111596f8b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 10
-  shootInterval: .5
+  bulletSpeed: 5
+  shootInterval: .300000012
   force: 100
   buttonLeft: PL1Left
   buttonRight: PL1Right

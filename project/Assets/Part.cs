@@ -25,11 +25,16 @@ public class Part : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D col) {
 		float velocity = Mathf.Abs(Vector3.Dot(col.relativeVelocity, col.contacts[0].normal.normalized));
 		
-		if(velocity > 8) {
+		Bullet bullet = col.contacts[0].otherCollider.GetComponent<Bullet>();
+		if(bullet != null) {
+			hp -= 1;
+			Debug.Log("1 Dmg (bullet)");
+		}
+		else if(velocity > 8) {
 			hp -= 6;
 			Debug.Log("6 Dmg");
 		}
-		if(velocity > 5) {
+		else if(velocity > 5) {
 			hp -= 4;
 			Debug.Log("4 Dmg");
 		}
