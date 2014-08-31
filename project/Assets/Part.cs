@@ -30,28 +30,36 @@ public class Part : MonoBehaviour {
 		float velocity = Mathf.Abs(Vector3.Dot(col.relativeVelocity, col.contacts[0].normal.normalized));
 		
 		Bullet bullet = col.contacts[0].collider.GetComponent<Bullet>();
+        Part otherShip = col.contacts[0].collider.GetComponent<Part>();
+        if (otherShip != null)
+        {
+            transform.parent.GetComponent<Ship>().lastAttacker = otherShip.GetComponentInParent<Ship>();
+            Debug.Log("Attacked!");
+        }
+
 		if(bullet != null) {
 			hp -= 1;
-			Debug.Log("1 Dmg (bullet)");
+            transform.parent.GetComponent<Ship>().lastAttacker = bullet.shooter;
+			//Debug.Log("1 Dmg (bullet)");
 		}
 		else if(velocity > 5) {
 			hp -= 6;
-			Debug.Log("6 Dmg");
+			//Debug.Log("6 Dmg");
 		}
 		else if(velocity > 2.5f) {
 			hp -= 5;
-			Debug.Log("4 Dmg");
+			//Debug.Log("4 Dmg");
 		}
 		else if(velocity > 1.4f) {
 			hp -= 2;
-			Debug.Log("2 Dmg");
+			//Debug.Log("2 Dmg");
 		}
 		else if(velocity > 1) {
 			hp -= 1;
-			Debug.Log("1 Dmg");
+			//Debug.Log("1 Dmg");
 		}
 		else {
-			Debug.Log("0 Dmg");
+			//Debug.Log("0 Dmg");
 		}
 		
 		if(hp <= explodehp) {

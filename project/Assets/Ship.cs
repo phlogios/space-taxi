@@ -9,6 +9,7 @@ public class Ship : MonoBehaviour {
     public float recoil = 1500;
     public int maxAmmo = 3;
     public float reloadTime = 3;
+    public int score = 0;
 	
 	public string buttonLeft = "PL1Left";
 	public string buttonRight = "PL1Right";
@@ -23,7 +24,11 @@ public class Ship : MonoBehaviour {
 	public Transform bulletPrefab;
 	public Transform spawnEffect;
     public Transform explosion;
-	
+
+    public Ship lastAttacker = null;
+
+    float lastAttackerCooldown = 2.0f;
+
 	float shootCooldown;
     float reloadProgress;
     int ammo;
@@ -132,6 +137,7 @@ public class Ship : MonoBehaviour {
 				foreach(Collider2D ownCollider in GetComponentsInChildren<Collider2D>()) {
 					Physics2D.IgnoreCollision(bulletObj.collider2D, ownCollider);
 				}
+                bulletObj.GetComponent<Bullet>().shooter = this;
 			}
 		}
 
@@ -142,6 +148,17 @@ public class Ship : MonoBehaviour {
             {
                 reloadProgress = 0.0f;
                 ammo = maxAmmo;
+            }
+        }
+
+        //SCORING
+        if (lastAttacker != null)
+        {
+            lastAttackerCooldown -= Time.deltaTime;
+            if (lastAttackerCooldown < 0)
+            {
+                lastAttacker = null;
+                lastAttackerCooldown = 2.0f;
             }
         }
 		
@@ -160,9 +177,25 @@ public class Ship : MonoBehaviour {
 		else {
 			destructTimerText.text = "";
 		}
-		
+
+        bool selfDestroyed = (selfdestroying && destructTimer <= 0.0f);
+        if (selfDestroyed)
+        {
+            score--;
+        }
+
 		//DEATH
-		if(cockpit.broken || (selfdestroying && destructTimer <= 0.0f)) {
+        bool dead = cockpit.broken || selfDestroyed;
+		if(dead) {
+            if (lastAttacker)
+            {
+                Ship attackerShip = lastAttacker.GetComponent<Ship>();
+                if (attackerShip)
+                {
+                    attackerShip.score++;
+                }
+            }
+
             Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
 			gameObject.SetActive(false);
 			
