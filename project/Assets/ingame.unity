@@ -10263,7 +10263,7 @@ TextMesh:
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4279413546
+    rgba: 4294967295
 --- !u!23 &1445404297
 Renderer:
   m_ObjectHideFlags: 0
@@ -10345,7 +10345,7 @@ TextMesh:
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4282993151
+    rgba: 4294967295
 --- !u!23 &1467657163
 Renderer:
   m_ObjectHideFlags: 0
