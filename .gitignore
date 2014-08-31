@@ -11,3 +11,12 @@
 /*.userprefs
 /*.pidb
 /*.booproj
+
+/project/*.sln
+
+/project/*.csproj
+
+/project/Assets/*.pidb
+/project/Assets/Assembly-CSharp.pidb.meta
+
+/project/project.userprefs
