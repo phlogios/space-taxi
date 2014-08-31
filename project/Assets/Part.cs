@@ -25,7 +25,7 @@ public class Part : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D col) {
 		float velocity = Mathf.Abs(Vector3.Dot(col.relativeVelocity, col.contacts[0].normal.normalized));
 		
-		Bullet bullet = col.contacts[0].otherCollider.GetComponent<Bullet>();
+		Bullet bullet = col.contacts[0].collider.GetComponent<Bullet>();
 		if(bullet != null) {
 			hp -= 1;
 			Debug.Log("1 Dmg (bullet)");
