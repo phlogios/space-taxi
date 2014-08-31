@@ -201,6 +201,10 @@ Prefab:
       propertyPath: m_Color.b
       value: .220334545
       objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 32284eba69d0ce243b7fd25e0069bcd7, type: 2}
+      propertyPath: buttonSelfDestroy
+      value: PL2SelfDestroy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 32284eba69d0ce243b7fd25e0069bcd7, type: 2}
   m_RootGameObject: {fileID: 1174135377}
@@ -7054,6 +7058,7 @@ MonoBehaviour:
   buttonLeft: PL1Left
   buttonRight: PL1Right
   buttonShoot: PL1Shoot
+  buttonSelfDestroy: PL1SelfDestroy
   engineLeft: {fileID: 1616615498}
   engineRight: {fileID: 966213086}
   cockpit: {fileID: 1785013700}
@@ -8259,6 +8264,7 @@ MonoBehaviour:
   buttonLeft: PL2Left
   buttonRight: PL2Right
   buttonShoot: PL2Shoot
+  buttonSelfDestroy: PL2SelfDestroy
   engineLeft: {fileID: 683258426}
   engineRight: {fileID: 1297811760}
   cockpit: {fileID: 5566590}

@@ -53,6 +53,22 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
+    m_Name: PL1SelfDestroy
+    descriptiveName: Player 1 Self destruction
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: down
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0
+    sensitivity: 0
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
     m_Name: PL2Left
     descriptiveName: Player 2 Left
     descriptiveNegativeName: 
@@ -90,6 +106,22 @@ InputManager:
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: w
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0
+    sensitivity: 0
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: PL2SelfDestroy
+    descriptiveName: Player 2 Self destruction
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: s
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0

@@ -10,6 +10,7 @@ public class Ship : MonoBehaviour {
 	public string buttonLeft = "PL1Left";
 	public string buttonRight = "PL1Right";
 	public string buttonShoot = "PL1Shoot";
+	public string buttonSelfDestroy = "PL1SelfDestroy";
 	
 	public Engine engineLeft;
 	public Engine engineRight;
@@ -76,7 +77,7 @@ public class Ship : MonoBehaviour {
 		bool thrustingL = pressingL && !engineRight.GetComponent<Part>().broken;
 		bool thrustingR = pressingR && !engineLeft.GetComponent<Part>().broken;
 		
-		engineRight.GetComponentsInChildren<Particles>(true)[0].on  = thrustingL;
+		engineRight.GetComponentsInChildren<Particles>(true)[0].on = thrustingL;
         engineLeft.GetComponentsInChildren<Particles>(true)[0].on = thrustingR;
 		
 		if(thrustingL) {
@@ -108,9 +109,14 @@ public class Ship : MonoBehaviour {
 		}
 		
 		//DEATH
-		if(cockpit.broken) {
+		if(cockpit.broken || Input.GetButtonDown(buttonSelfDestroy)) {
             Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
 			gameObject.SetActive(false);
+			
+			foreach(ParticleSystem particle in GetComponentsInChildren<ParticleSystem>(true)) {
+				particle.Clear();
+			}
+			
 			Invoke("respawn", 2);
 		}
 	}
