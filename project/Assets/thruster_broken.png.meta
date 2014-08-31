@@ -1,9 +1,8 @@
 fileFormatVersion: 2
-guid: f07bfe1175da213488aa8905cd025461
+guid: 24f2a7357b887824ca0de7074a39df59
 TextureImporter:
   fileIDToRecycleName:
-    21300000: cab
-    21300002: Ship
+    21300000: thruster_broken
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -27,9 +26,9 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: 0
-    aniso: 1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50

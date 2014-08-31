@@ -1,9 +1,8 @@
 fileFormatVersion: 2
-guid: f07bfe1175da213488aa8905cd025461
+guid: 70b7f3c44d4722443bc063fec45254b4
 TextureImporter:
   fileIDToRecycleName:
-    21300000: cab
-    21300002: Ship
+    21300000: thruster
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

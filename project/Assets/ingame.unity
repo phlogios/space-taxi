@@ -103,8 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b310b27c1501c52429819307007f01e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceLimit: .200000003
-  broken: 0
+  maxhp: 3
+  sprites: []
 --- !u!4 &5566591
 Transform:
   m_ObjectHideFlags: 0
@@ -6006,6 +6006,7 @@ GameObject:
   - 61: {fileID: 683258429}
   - 114: {fileID: 683258428}
   - 114: {fileID: 683258426}
+  - 212: {fileID: 683258430}
   m_Layer: 0
   m_Name: Engine L
   m_TagString: Untagged
@@ -6051,8 +6052,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b310b27c1501c52429819307007f01e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceLimit: 1
-  broken: 0
+  maxhp: 3
+  sprites: []
 --- !u!61 &683258429
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6065,6 +6066,29 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: .219999999, y: .579999983}
   m_Center: {x: 0, y: 0}
+--- !u!212 &683258430
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 21200004, guid: 32284eba69d0ce243b7fd25e0069bcd7,
+    type: 2}
+  m_PrefabInternal: {fileID: 23201185}
+  m_GameObject: {fileID: 683258425}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 1345091757
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 21300000, guid: 70b7f3c44d4722443bc063fec45254b4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &843724619
 GameObject:
   m_ObjectHideFlags: 0
@@ -6127,6 +6151,7 @@ GameObject:
   - 61: {fileID: 966213085}
   - 114: {fileID: 966213084}
   - 114: {fileID: 966213086}
+  - 212: {fileID: 966213088}
   m_Layer: 0
   m_Name: Engine R
   m_TagString: Untagged
@@ -6146,8 +6171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b310b27c1501c52429819307007f01e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceLimit: 1
-  broken: 0
+  maxhp: 3
+  sprites: []
 --- !u!61 &966213085
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6186,6 +6211,29 @@ Transform:
   - {fileID: 1046670967}
   m_Father: {fileID: 987903587}
   m_RootOrder: 1
+--- !u!212 &966213088
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 21200006, guid: 32284eba69d0ce243b7fd25e0069bcd7,
+    type: 2}
+  m_PrefabInternal: {fileID: 143803511}
+  m_GameObject: {fileID: 966213083}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 1345091757
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 21300000, guid: 70b7f3c44d4722443bc063fec45254b4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &987903585
 GameObject:
   m_ObjectHideFlags: 0
@@ -8619,6 +8667,7 @@ GameObject:
   - 61: {fileID: 1297811763}
   - 114: {fileID: 1297811762}
   - 114: {fileID: 1297811760}
+  - 212: {fileID: 1297811764}
   m_Layer: 0
   m_Name: Engine R
   m_TagString: Untagged
@@ -8664,8 +8713,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b310b27c1501c52429819307007f01e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceLimit: 1
-  broken: 0
+  maxhp: 3
+  sprites: []
 --- !u!61 &1297811763
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8678,6 +8727,29 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: .219999999, y: .579999983}
   m_Center: {x: 0, y: 0}
+--- !u!212 &1297811764
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 21200006, guid: 32284eba69d0ce243b7fd25e0069bcd7,
+    type: 2}
+  m_PrefabInternal: {fileID: 23201185}
+  m_GameObject: {fileID: 1297811759}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 1345091757
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 21300000, guid: 70b7f3c44d4722443bc063fec45254b4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1544154637
 GameObject:
   m_ObjectHideFlags: 0
@@ -9808,6 +9880,7 @@ GameObject:
   - 61: {fileID: 1616615497}
   - 114: {fileID: 1616615500}
   - 114: {fileID: 1616615498}
+  - 212: {fileID: 1616615501}
   m_Layer: 0
   m_Name: Engine L
   m_TagString: Untagged
@@ -9865,8 +9938,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b310b27c1501c52429819307007f01e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceLimit: 1
-  broken: 0
+  maxhp: 3
+  sprites: []
+--- !u!212 &1616615501
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 21200004, guid: 32284eba69d0ce243b7fd25e0069bcd7,
+    type: 2}
+  m_PrefabInternal: {fileID: 143803511}
+  m_GameObject: {fileID: 1616615496}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 1345091757
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 21300000, guid: 70b7f3c44d4722443bc063fec45254b4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1785013697
 GameObject:
   m_ObjectHideFlags: 0
@@ -9920,8 +10016,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b310b27c1501c52429819307007f01e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceLimit: .200000003
-  broken: 0
+  maxhp: 3
+  sprites: []
 --- !u!1 &2000162900
 GameObject:
   m_ObjectHideFlags: 0
