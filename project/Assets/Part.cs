@@ -6,7 +6,9 @@ public class Part : MonoBehaviour {
 	public int maxhp = 3;
     public int explodehp = -5;
 	public Transform partExplosion;
-	
+
+    public bool brokeThisFrame;
+
 	public bool broken {
 		get {
 			return hp <= 0;
@@ -14,6 +16,7 @@ public class Part : MonoBehaviour {
 	}
 	public Sprite[] sprites;
 	int hp;
+    bool brokenLastFrame = false;
 	
 	// Update is called once per frame
 	void Update () {
@@ -61,7 +64,14 @@ public class Part : MonoBehaviour {
 		else {
 			//Debug.Log("0 Dmg");
 		}
-		
+
+        brokeThisFrame = false;
+        if (broken && !brokenLastFrame)
+        {
+            brokeThisFrame = true;
+        }
+        brokenLastFrame = broken;
+
 		if(hp <= explodehp) {
 			gameObject.SetActive(false);
 			GameObject.Instantiate(partExplosion, transform.position, Quaternion.identity);

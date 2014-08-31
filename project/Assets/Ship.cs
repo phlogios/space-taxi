@@ -5,7 +5,6 @@ public class Ship : MonoBehaviour {
 	
 	public float bulletSpeed = 2;
 	public float shootInterval = 0.5f;
-	public float force = 100;
     public float recoil = 1500;
     public int maxAmmo = 3;
     public float reloadTime = 3;
@@ -40,6 +39,8 @@ public class Ship : MonoBehaviour {
 	}
 	
 	public void respawn() {
+        lastAttacker = null;
+        lastAttackerCooldown = 2.0f;
 		shootCooldown = 0.0f;
 		selfdestroying = false;
         reloadProgress = 0.0f;
@@ -89,33 +90,20 @@ public class Ship : MonoBehaviour {
 				pressingL = true;
 			}
 		}
-		
+
+        if (pressingL)
+        {
+            engineRight.GetComponentInChildren<Thruster>().Thrust();
+        }
+
+        if (pressingR)
+        {
+            engineLeft.GetComponentInChildren<Thruster>().Thrust();
+        }
+
 		bool thrustingL = pressingL && !engineRight.GetComponent<Part>().broken;
 		bool thrustingR = pressingR && !engineLeft.GetComponent<Part>().broken;
 		
-		engineRight.GetComponentsInChildren<Particles>(true)[0].on = thrustingL;
-        engineLeft.GetComponentsInChildren<Particles>(true)[0].on = thrustingR;
-		
-		if(thrustingL) {
-			rigidbody2D.AddForceAtPosition(
-				transform.up * force * Time.deltaTime, transform.TransformPoint(0.25f,0,0));
-			if(!engineLeft.audio.isPlaying) {
-				engineLeft.audio.Play();
-			}
-		}
-		else {
-			engineLeft.audio.Stop();
-		}
-		if(thrustingR) {
-			rigidbody2D.AddForceAtPosition(
-				transform.up * force * Time.deltaTime, transform.TransformPoint(-0.25f,0,0));
-			if(!engineRight.audio.isPlaying) {
-				engineRight.audio.Play();
-			}
-		}
-		else {
-			engineRight.audio.Stop();
-		}
 		
 		//SHOOTING
 		shootCooldown -= Time.deltaTime;

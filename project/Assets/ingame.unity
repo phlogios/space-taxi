@@ -107,6 +107,7 @@ MonoBehaviour:
   maxhp: 3
   explodehp: -5
   partExplosion: {fileID: 400000, guid: 8f35ff30471e7764d9083ae2af224d82, type: 2}
+  brokeThisFrame: 0
   sprites:
   - {fileID: 21300002, guid: f07bfe1175da213488aa8905cd025461, type: 3}
   - {fileID: 21300000, guid: 476f21929f331da408bf5bab329e66a8, type: 3}
@@ -4966,6 +4967,7 @@ MonoBehaviour:
   maxhp: 1
   explodehp: 0
   partExplosion: {fileID: 400000, guid: 8fad914ab4c2e8c41979789919ac3b3c, type: 2}
+  brokeThisFrame: 0
   sprites:
   - {fileID: 21300000, guid: 7ff34ef6dcf98094b989f7000f1b0184, type: 3}
 --- !u!212 &376728177
@@ -6563,6 +6565,7 @@ GameObject:
   - 114: {fileID: 683258426}
   - 212: {fileID: 683258430}
   - 82: {fileID: 683258431}
+  - 114: {fileID: 683258432}
   m_Layer: 0
   m_Name: Engine L
   m_TagString: Untagged
@@ -6611,6 +6614,7 @@ MonoBehaviour:
   maxhp: 3
   explodehp: -5
   partExplosion: {fileID: 400000, guid: 8f35ff30471e7764d9083ae2af224d82, type: 2}
+  brokeThisFrame: 0
   sprites:
   - {fileID: 21300000, guid: 70b7f3c44d4722443bc063fec45254b4, type: 3}
   - {fileID: 21300000, guid: 24f2a7357b887824ca0de7074a39df59, type: 3}
@@ -6709,6 +6713,20 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &683258432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400024, guid: 32284eba69d0ce243b7fd25e0069bcd7,
+    type: 2}
+  m_PrefabInternal: {fileID: 23201185}
+  m_GameObject: {fileID: 683258425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1c93059445f5d64abfe55410884b593, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 100
+  catastrophe: 0
 --- !u!1 &685775880
 GameObject:
   m_ObjectHideFlags: 0
@@ -7177,6 +7195,7 @@ MonoBehaviour:
   maxhp: 1
   explodehp: 0
   partExplosion: {fileID: 400000, guid: 8fad914ab4c2e8c41979789919ac3b3c, type: 2}
+  brokeThisFrame: 0
   sprites:
   - {fileID: 21300000, guid: 7ff34ef6dcf98094b989f7000f1b0184, type: 3}
 --- !u!212 &942896041
@@ -7215,6 +7234,7 @@ GameObject:
   - 114: {fileID: 966213086}
   - 212: {fileID: 966213088}
   - 82: {fileID: 966213089}
+  - 114: {fileID: 966213090}
   m_Layer: 0
   m_Name: Engine R
   m_TagString: Untagged
@@ -7237,6 +7257,7 @@ MonoBehaviour:
   maxhp: 3
   explodehp: -5
   partExplosion: {fileID: 400000, guid: 8f35ff30471e7764d9083ae2af224d82, type: 2}
+  brokeThisFrame: 0
   sprites:
   - {fileID: 21300000, guid: 70b7f3c44d4722443bc063fec45254b4, type: 3}
   - {fileID: 21300000, guid: 24f2a7357b887824ca0de7074a39df59, type: 3}
@@ -7361,6 +7382,20 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &966213090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400026, guid: 32284eba69d0ce243b7fd25e0069bcd7,
+    type: 2}
+  m_PrefabInternal: {fileID: 916119541}
+  m_GameObject: {fileID: 966213083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1c93059445f5d64abfe55410884b593, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 100
+  catastrophe: 0
 --- !u!1 &987903585
 GameObject:
   m_ObjectHideFlags: 0
@@ -7426,7 +7461,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 916119541}
   m_GameObject: {fileID: 987903585}
   m_Mass: 1
-  m_LinearDrag: .200000003
+  m_LinearDrag: .100000001
   m_AngularDrag: .100000001
   m_GravityScale: 0
   m_FixedAngle: 0
@@ -7448,7 +7483,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 5
   shootInterval: .300000012
-  force: 100
   recoil: 1500
   maxAmmo: 3
   reloadTime: 3
@@ -8660,7 +8694,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 5
   shootInterval: .300000012
-  force: 100
   recoil: 1500
   maxAmmo: 3
   reloadTime: 3
@@ -8686,7 +8719,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 23201185}
   m_GameObject: {fileID: 1174135377}
   m_Mass: 1
-  m_LinearDrag: .200000003
+  m_LinearDrag: .100000001
   m_AngularDrag: .100000001
   m_GravityScale: 0
   m_FixedAngle: 0
@@ -9974,6 +10007,7 @@ GameObject:
   - 114: {fileID: 1297811760}
   - 212: {fileID: 1297811764}
   - 82: {fileID: 1297811765}
+  - 114: {fileID: 1297811766}
   m_Layer: 0
   m_Name: Engine R
   m_TagString: Untagged
@@ -10022,6 +10056,7 @@ MonoBehaviour:
   maxhp: 3
   explodehp: -5
   partExplosion: {fileID: 400000, guid: 8f35ff30471e7764d9083ae2af224d82, type: 2}
+  brokeThisFrame: 0
   sprites:
   - {fileID: 21300000, guid: 70b7f3c44d4722443bc063fec45254b4, type: 3}
   - {fileID: 21300000, guid: 24f2a7357b887824ca0de7074a39df59, type: 3}
@@ -10120,6 +10155,20 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &1297811766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400026, guid: 32284eba69d0ce243b7fd25e0069bcd7,
+    type: 2}
+  m_PrefabInternal: {fileID: 23201185}
+  m_GameObject: {fileID: 1297811759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1c93059445f5d64abfe55410884b593, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 100
+  catastrophe: 0
 --- !u!1001 &1304503842
 Prefab:
   m_ObjectHideFlags: 0
@@ -10214,7 +10263,7 @@ TextMesh:
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4279413546
 --- !u!23 &1445404297
 Renderer:
   m_ObjectHideFlags: 0
@@ -10296,7 +10345,7 @@ TextMesh:
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4282993151
 --- !u!23 &1467657163
 Renderer:
   m_ObjectHideFlags: 0
@@ -11524,6 +11573,7 @@ GameObject:
   - 114: {fileID: 1616615498}
   - 212: {fileID: 1616615501}
   - 82: {fileID: 1616615502}
+  - 114: {fileID: 1616615503}
   m_Layer: 0
   m_Name: Engine L
   m_TagString: Untagged
@@ -11584,6 +11634,7 @@ MonoBehaviour:
   maxhp: 3
   explodehp: -5
   partExplosion: {fileID: 400000, guid: 8f35ff30471e7764d9083ae2af224d82, type: 2}
+  brokeThisFrame: 0
   sprites:
   - {fileID: 21300000, guid: 70b7f3c44d4722443bc063fec45254b4, type: 3}
   - {fileID: 21300000, guid: 24f2a7357b887824ca0de7074a39df59, type: 3}
@@ -11670,6 +11721,20 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &1616615503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400024, guid: 32284eba69d0ce243b7fd25e0069bcd7,
+    type: 2}
+  m_PrefabInternal: {fileID: 916119541}
+  m_GameObject: {fileID: 1616615496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1c93059445f5d64abfe55410884b593, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 100
+  catastrophe: 0
 --- !u!1 &1623838172
 GameObject:
   m_ObjectHideFlags: 0
@@ -11843,6 +11908,7 @@ MonoBehaviour:
   maxhp: 3
   explodehp: -5
   partExplosion: {fileID: 400000, guid: 8f35ff30471e7764d9083ae2af224d82, type: 2}
+  brokeThisFrame: 0
   sprites:
   - {fileID: 21300002, guid: f07bfe1175da213488aa8905cd025461, type: 3}
   - {fileID: 21300000, guid: 476f21929f331da408bf5bab329e66a8, type: 3}

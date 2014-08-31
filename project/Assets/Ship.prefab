@@ -67,6 +67,7 @@ GameObject:
   - 114: {fileID: 11400006}
   - 212: {fileID: 21200006}
   - 82: {fileID: 8200000}
+  - 114: {fileID: 11400026}
   m_Layer: 0
   m_Name: Engine R
   m_TagString: Untagged
@@ -140,6 +141,7 @@ GameObject:
   - 114: {fileID: 11400014}
   - 212: {fileID: 21200004}
   - 82: {fileID: 8200002}
+  - 114: {fileID: 11400024}
   m_Layer: 0
   m_Name: Engine L
   m_TagString: Untagged
@@ -368,7 +370,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_Mass: 1
-  m_LinearDrag: .200000003
+  m_LinearDrag: .100000001
   m_AngularDrag: .100000001
   m_GravityScale: 0
   m_FixedAngle: 0
@@ -595,6 +597,7 @@ MonoBehaviour:
   maxhp: 3
   explodehp: -5
   partExplosion: {fileID: 400000, guid: 8f35ff30471e7764d9083ae2af224d82, type: 2}
+  brokeThisFrame: 0
   sprites:
   - {fileID: 21300000, guid: 70b7f3c44d4722443bc063fec45254b4, type: 3}
   - {fileID: 21300000, guid: 24f2a7357b887824ca0de7074a39df59, type: 3}
@@ -623,10 +626,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 5
   shootInterval: .300000012
-  force: 100
   recoil: 1500
   maxAmmo: 3
   reloadTime: 3
+  score: 0
   buttonLeft: PL1Left
   buttonRight: PL1Right
   buttonShoot: PL1Shoot
@@ -639,6 +642,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 400000, guid: a6e04fd3cb713cc41a0dbcb6c55457a4, type: 2}
   spawnEffect: {fileID: 400000, guid: 75f42826416f0094ca12bf89ba9bfe74, type: 2}
   explosion: {fileID: 400000, guid: 8f35ff30471e7764d9083ae2af224d82, type: 2}
+  lastAttacker: {fileID: 0}
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -688,6 +692,7 @@ MonoBehaviour:
   maxhp: 3
   explodehp: -5
   partExplosion: {fileID: 400000, guid: 8f35ff30471e7764d9083ae2af224d82, type: 2}
+  brokeThisFrame: 0
   sprites:
   - {fileID: 21300000, guid: 70b7f3c44d4722443bc063fec45254b4, type: 3}
   - {fileID: 21300000, guid: 24f2a7357b887824ca0de7074a39df59, type: 3}
@@ -706,6 +711,7 @@ MonoBehaviour:
   maxhp: 3
   explodehp: -5
   partExplosion: {fileID: 400000, guid: 8f35ff30471e7764d9083ae2af224d82, type: 2}
+  brokeThisFrame: 0
   sprites:
   - {fileID: 21300002, guid: f07bfe1175da213488aa8905cd025461, type: 3}
   - {fileID: 21300000, guid: 476f21929f331da408bf5bab329e66a8, type: 3}
@@ -724,6 +730,7 @@ MonoBehaviour:
   maxhp: 1
   explodehp: 0
   partExplosion: {fileID: 400000, guid: 8fad914ab4c2e8c41979789919ac3b3c, type: 2}
+  brokeThisFrame: 0
   sprites:
   - {fileID: 21300000, guid: 7ff34ef6dcf98094b989f7000f1b0184, type: 3}
 --- !u!114 &11400022
@@ -737,6 +744,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fb294e1581a23e4488d8cad46303c6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1c93059445f5d64abfe55410884b593, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 100
+  catastrophe: 0
+--- !u!114 &11400026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1c93059445f5d64abfe55410884b593, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 100
+  catastrophe: 0
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
