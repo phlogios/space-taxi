@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Ship : MonoBehaviour {
 	
+	public float bulletSpeed = 2;
 	public float shootInterval = 0.5f;
 	public float force;
 	
@@ -70,7 +71,10 @@ public class Ship : MonoBehaviour {
 				
 				Transform bulletObj = GameObject.Instantiate(bulletPrefab) as Transform;
 				bulletObj.transform.position = transform.position;
+				bulletObj.rigidbody2D.velocity = rigidbody2D.velocity
+											+ (Vector2)transform.forward * bulletSpeed;
 				
+				//disable collision with self
 				foreach(Collider2D ownCollider in GetComponentsInChildren<Collider2D>()) {
 					Physics2D.IgnoreCollision(bulletObj.collider2D, ownCollider);
 				}
