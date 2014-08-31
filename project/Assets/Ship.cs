@@ -33,19 +33,16 @@ public class Ship : MonoBehaviour {
 		for(int i=0; i < 20; i++) { //try at most 20 times to avoid getting infinite loops
 			SpawnPoint[] spawnPoints = GameObject.FindObjectsOfType<SpawnPoint>();
 			int spawnIndex = Random.Range(0, spawnPoints.Length);
-			Debug.Log("index: "+spawnIndex);
 			spawnPos = spawnPoints[spawnIndex].transform.position;
 			
 			bool shipNearby = false;
 			foreach(Ship ship in ships) {
 				if(ship != this && Vector2.Distance(ship.transform.position, spawnPos) < 2) {
 					shipNearby = true;
-					Debug.Log("nearby");
 					break;
 				}
 			}
 			if(!shipNearby) {
-				Debug.Log("spawn");
 				break;
 			}
 			//otherwise, try randomizing again.
