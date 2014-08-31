@@ -17,6 +17,7 @@ public class Ship : MonoBehaviour {
 	public Part cannon;
 	public Transform bulletPrefab;
 	public Transform spawnEffect;
+    public Transform explosion;
 	
 	Vector2 spawnPos;
 	float shootCooldown;
@@ -91,6 +92,7 @@ public class Ship : MonoBehaviour {
 		
 		//DEATH
 		if(cockpit.broken) {
+            Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
 			gameObject.SetActive(false);
 			Invoke("respawn", 2);
 		}
