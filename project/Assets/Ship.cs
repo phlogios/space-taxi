@@ -100,9 +100,6 @@ public class Ship : MonoBehaviour {
         {
             engineLeft.GetComponentInChildren<Thruster>().Thrust();
         }
-
-		bool thrustingL = pressingL && !engineRight.GetComponent<Part>().broken;
-		bool thrustingR = pressingR && !engineLeft.GetComponent<Part>().broken;
 		
 		
 		//SHOOTING
