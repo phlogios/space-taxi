@@ -64,7 +64,6 @@ GameObject:
   - 4: {fileID: 400006}
   - 61: {fileID: 6100000}
   - 114: {fileID: 11400004}
-  - 114: {fileID: 11400006}
   - 212: {fileID: 21200006}
   - 82: {fileID: 8200000}
   - 114: {fileID: 11400026}
@@ -138,7 +137,6 @@ GameObject:
   - 4: {fileID: 400014}
   - 61: {fileID: 6100002}
   - 114: {fileID: 11400016}
-  - 114: {fileID: 11400014}
   - 212: {fileID: 21200004}
   - 82: {fileID: 8200002}
   - 114: {fileID: 11400024}
@@ -602,17 +600,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 70b7f3c44d4722443bc063fec45254b4, type: 3}
   - {fileID: 21300000, guid: 24f2a7357b887824ca0de7074a39df59, type: 3}
   - {fileID: 21300000, guid: 9d1f0b357cf68574592a02ed63c9f78a, type: 3}
---- !u!114 &11400006
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 147f2c90a2d152347ba3908ceb9aee96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -634,8 +621,8 @@ MonoBehaviour:
   buttonRight: PL1Right
   buttonShoot: PL1Shoot
   buttonSelfDestroy: PL1SelfDestroy
-  engineLeft: {fileID: 11400014}
-  engineRight: {fileID: 11400006}
+  engineLeft: {fileID: 11400024}
+  engineRight: {fileID: 11400026}
   cockpit: {fileID: 11400018}
   cannon: {fileID: 11400020}
   destructTimerText: {fileID: 10200000}
@@ -667,17 +654,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   on: 0
---- !u!114 &11400014
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 147f2c90a2d152347ba3908ceb9aee96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -13,6 +13,7 @@ GameObject:
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
   - 82: {fileID: 8200000}
+  - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: explosion
   m_TagString: Untagged
@@ -42,7 +43,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: b944fe0540d194c448cd132ad6f9b077, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .233999997
+  m_Volume: .437999994
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -113,6 +114,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a2224131cb621840b3769df78658610, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c707ffc6192dd0a419ba8990b57d465f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 100
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

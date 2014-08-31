@@ -15,8 +15,8 @@ public class Ship : MonoBehaviour {
 	public string buttonShoot = "PL1Shoot";
 	public string buttonSelfDestroy = "PL1SelfDestroy";
 	
-	public Engine engineLeft;
-	public Engine engineRight;
+	public Thruster engineLeft;
+	public Thruster engineRight;
 	public Part cockpit;
 	public Part cannon;
 	public TextMesh destructTimerText;
@@ -93,12 +93,13 @@ public class Ship : MonoBehaviour {
 
         if (pressingL)
         {
-            engineRight.GetComponentInChildren<Thruster>().Thrust();
+            
+            engineRight.Thrust();
         }
 
         if (pressingR)
         {
-            engineLeft.GetComponentInChildren<Thruster>().Thrust();
+            engineLeft.Thrust();
         }
 		
 		
@@ -175,7 +176,7 @@ public class Ship : MonoBehaviour {
             if (lastAttacker)
             {
                 Ship attackerShip = lastAttacker.GetComponent<Ship>();
-                if (attackerShip)
+                if (attackerShip && !selfDestroyed)
                 {
                     attackerShip.score++;
                 }
