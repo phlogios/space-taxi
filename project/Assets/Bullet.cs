@@ -4,6 +4,8 @@ using System.Collections;
 public class Bullet : MonoBehaviour {
 
     public Transform dinkEffect;
+
+    public Ship shooter;
 	// Use this for initialization
 	void Start () {
 	
