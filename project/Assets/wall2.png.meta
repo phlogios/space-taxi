@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 476f21929f331da408bf5bab329e66a8
+guid: 466f7f86ce97ab0448098d2a078428da
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Ship_broken
+    21300000: wall2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -26,9 +26,9 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: 0
-    aniso: 1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50

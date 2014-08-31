@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 476f21929f331da408bf5bab329e66a8
+guid: 1aaec3d36e4297c49a2525846a78578f
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Ship_broken
+    21300000: wall
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
