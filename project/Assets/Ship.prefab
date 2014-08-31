@@ -475,10 +475,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxhp: 3
+  explodehp: -5
   partExplosion: {fileID: 400000, guid: 8f35ff30471e7764d9083ae2af224d82, type: 2}
   sprites:
   - {fileID: 21300000, guid: 70b7f3c44d4722443bc063fec45254b4, type: 3}
   - {fileID: 21300000, guid: 24f2a7357b887824ca0de7074a39df59, type: 3}
+  - {fileID: 21300000, guid: 9d1f0b357cf68574592a02ed63c9f78a, type: 3}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -504,6 +506,9 @@ MonoBehaviour:
   bulletSpeed: 5
   shootInterval: .300000012
   force: 100
+  recoil: 1500
+  maxAmmo: 3
+  reloadTime: 3
   buttonLeft: PL1Left
   buttonRight: PL1Right
   buttonShoot: PL1Shoot
@@ -563,10 +568,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxhp: 3
+  explodehp: -5
   partExplosion: {fileID: 400000, guid: 8f35ff30471e7764d9083ae2af224d82, type: 2}
   sprites:
   - {fileID: 21300000, guid: 70b7f3c44d4722443bc063fec45254b4, type: 3}
   - {fileID: 21300000, guid: 24f2a7357b887824ca0de7074a39df59, type: 3}
+  - {fileID: 21300000, guid: 9d1f0b357cf68574592a02ed63c9f78a, type: 3}
 --- !u!114 &11400018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -579,9 +586,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxhp: 3
+  explodehp: -5
   partExplosion: {fileID: 400000, guid: 8f35ff30471e7764d9083ae2af224d82, type: 2}
   sprites:
   - {fileID: 21300002, guid: f07bfe1175da213488aa8905cd025461, type: 3}
+  - {fileID: 21300000, guid: 476f21929f331da408bf5bab329e66a8, type: 3}
   - {fileID: 21300000, guid: 476f21929f331da408bf5bab329e66a8, type: 3}
 --- !u!114 &11400020
 MonoBehaviour:
@@ -594,11 +603,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b310b27c1501c52429819307007f01e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxhp: 3
-  partExplosion: {fileID: 0}
+  maxhp: 1
+  explodehp: 0
+  partExplosion: {fileID: 400000, guid: 8fad914ab4c2e8c41979789919ac3b3c, type: 2}
   sprites:
   - {fileID: 21300000, guid: 7ff34ef6dcf98094b989f7000f1b0184, type: 3}
-  - {fileID: 21300000, guid: 121064df1dd2e9d4f8597891064fb91b, type: 3}
 --- !u!114 &11400022
 MonoBehaviour:
   m_ObjectHideFlags: 1
