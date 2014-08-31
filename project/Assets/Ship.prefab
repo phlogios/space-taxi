@@ -386,6 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd832ba904ff994c9682e111596f8b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletSpeed: 2
   shootInterval: .5
   force: 100
   buttonLeft: PL1Left
@@ -4798,8 +4799,8 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1345091757
   m_SortingOrder: 1
-  m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300002, guid: f07bfe1175da213488aa8905cd025461, type: 3}
+  m_Color: {r: 1, g: .845841765, b: .705882311, a: 1}
 --- !u!212 &21200004
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -4820,7 +4821,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1345091757
   m_SortingOrder: -1
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 70b7f3c44d4722443bc063fec45254b4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21200006
 SpriteRenderer:
