@@ -16,11 +16,14 @@ public class Ship : MonoBehaviour {
 	public Engine engineRight;
 	public Part cockpit;
 	public Part cannon;
+	public TextMesh destructTimerText;
 	public Transform bulletPrefab;
 	public Transform spawnEffect;
     public Transform explosion;
 	
 	float shootCooldown;
+	bool selfdestroying = false;
+	float destructTimer;
 	
 	void Start () {
 		respawn();
@@ -28,6 +31,7 @@ public class Ship : MonoBehaviour {
 	
 	public void respawn() {
 		shootCooldown = 0.0f;
+		selfdestroying = false;
 		
 		Vector2 spawnPos = Vector2.zero;
 		Ship[] ships = GameObject.FindObjectsOfType<Ship>();
@@ -108,8 +112,24 @@ public class Ship : MonoBehaviour {
 			}
 		}
 		
+		//SELF DESCTRUCTION
+		if(!selfdestroying && Input.GetButtonDown(buttonSelfDestroy)) {
+			selfdestroying = true;
+			destructTimer = 3.0f;
+		}
+		
+		if(selfdestroying) {
+			destructTimer -= Time.deltaTime;
+			destructTimerText.text = ""+(int)(destructTimer + 1.0f);
+			destructTimerText.transform.rotation = Quaternion.identity;
+			destructTimerText.transform.position = (Vector2)transform.position + 0.9f * Vector2.up;
+		}
+		else {
+			destructTimerText.text = "";
+		}
+		
 		//DEATH
-		if(cockpit.broken || Input.GetButtonDown(buttonSelfDestroy)) {
+		if(cockpit.broken || (selfdestroying && destructTimer <= 0.0f)) {
             Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
 			gameObject.SetActive(false);
 			

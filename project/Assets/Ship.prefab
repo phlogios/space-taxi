@@ -179,6 +179,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400020}
+  - 23: {fileID: 2300000}
+  - 102: {fileID: 10200000}
+  - 114: {fileID: 11400022}
+  m_Layer: 0
+  m_Name: DesctructTimer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -243,6 +261,7 @@ Transform:
   - {fileID: 400006}
   - {fileID: 400016}
   - {fileID: 400004}
+  - {fileID: 400020}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &400010
@@ -308,6 +327,38 @@ Transform:
   m_Children: []
   m_Father: {fileID: 400016}
   m_RootOrder: 0
+--- !u!4 &400020
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100020}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: .869672298, z: -1}
+  m_LocalScale: {x: .0199999996, y: .0199999996, z: 1}
+  m_Children: []
+  m_Father: {fileID: 400008}
+  m_RootOrder: 4
+--- !u!23 &2300000
+Renderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100020}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 3824613141
+  m_SortingOrder: 0
 --- !u!50 &5000000
 Rigidbody2D:
   m_ObjectHideFlags: 1
@@ -367,6 +418,27 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: .119999997, y: .0700000003}
   m_Center: {x: 0, y: 0}
+--- !u!102 &10200000
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100020}
+  m_Text: 
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 4
+  m_Alignment: 0
+  m_TabSize: 4
+  m_FontSize: 200
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4280301567
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -435,10 +507,12 @@ MonoBehaviour:
   buttonLeft: PL1Left
   buttonRight: PL1Right
   buttonShoot: PL1Shoot
+  buttonSelfDestroy: PL1SelfDestroy
   engineLeft: {fileID: 11400014}
   engineRight: {fileID: 11400006}
   cockpit: {fileID: 11400018}
   cannon: {fileID: 11400020}
+  destructTimerText: {fileID: 10200000}
   bulletPrefab: {fileID: 400000, guid: a6e04fd3cb713cc41a0dbcb6c55457a4, type: 2}
   spawnEffect: {fileID: 400000, guid: 75f42826416f0094ca12bf89ba9bfe74, type: 2}
   explosion: {fileID: 400000, guid: 8f35ff30471e7764d9083ae2af224d82, type: 2}
@@ -525,6 +599,17 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: 7ff34ef6dcf98094b989f7000f1b0184, type: 3}
   - {fileID: 21300000, guid: 121064df1dd2e9d4f8597891064fb91b, type: 3}
+--- !u!114 &11400022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb294e1581a23e4488d8cad46303c6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
