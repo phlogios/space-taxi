@@ -94,10 +94,22 @@ public class Ship : MonoBehaviour {
 		if(thrustingL) {
 			rigidbody2D.AddForceAtPosition(
 				transform.up * force * Time.deltaTime, transform.TransformPoint(0.25f,0,0));
+			if(!engineLeft.audio.isPlaying) {
+				engineLeft.audio.Play();
+			}
+		}
+		else {
+			engineLeft.audio.Stop();
 		}
 		if(thrustingR) {
 			rigidbody2D.AddForceAtPosition(
 				transform.up * force * Time.deltaTime, transform.TransformPoint(-0.25f,0,0));
+			if(!engineRight.audio.isPlaying) {
+				engineRight.audio.Play();
+			}
+		}
+		else {
+			engineRight.audio.Stop();
 		}
 		
 		//SHOOTING

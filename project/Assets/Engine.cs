@@ -12,7 +12,4 @@ public class Engine : MonoBehaviour {
 	void Update () {
 		
 	}
-	
-	public void thrust() {
-	}
 }
