@@ -56,6 +56,9 @@ public class Part : MonoBehaviour {
 		
 		
 		int spriteIndex = Mathf.RoundToInt((sprites.Length-1) * (float)(maxhp-hp) / maxhp);
+		if(spriteIndex == sprites.Length - 1 && hp > 0 && sprites.Length > 1)
+			spriteIndex = sprites.Length - 2;
+		
 		GetComponent<SpriteRenderer>().sprite = sprites[spriteIndex];
 	}
 }

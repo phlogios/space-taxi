@@ -14,6 +14,7 @@ public class Ship : MonoBehaviour {
 	public Engine engineLeft;
 	public Engine engineRight;
 	public Part cockpit;
+	public Part cannon;
 	public Transform bulletPrefab;
 	
 	float shootCooldown;
@@ -65,7 +66,7 @@ public class Ship : MonoBehaviour {
 		
 		//SHOOTING
 		shootCooldown -= Time.deltaTime;
-		if(Input.GetButton(buttonShoot)) {
+		if(Input.GetButton(buttonShoot) && !cannon.broken) {
 			if(shootCooldown <= 0) {
 				shootCooldown = shootInterval;
 				
