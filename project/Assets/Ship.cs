@@ -77,9 +77,10 @@ public class Ship : MonoBehaviour {
 				shootCooldown = shootInterval;
 				
 				Transform bulletObj = GameObject.Instantiate(bulletPrefab) as Transform;
-				bulletObj.transform.position = transform.position;
+				bulletObj.transform.position = transform.position + 0.4f * transform.up;
 				bulletObj.rigidbody2D.velocity = rigidbody2D.velocity
-											+ (Vector2)transform.up * bulletSpeed;
+											+ (Vector2)transform.up * bulletSpeed
+											- 0.4f * (Vector2)transform.right * rigidbody2D.angularVelocity * Mathf.Deg2Rad;
 				
 				//disable collision with self
 				foreach(Collider2D ownCollider in GetComponentsInChildren<Collider2D>()) {
