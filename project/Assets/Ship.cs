@@ -16,10 +16,13 @@ public class Ship : MonoBehaviour {
 	public Part cockpit;
 	public Part cannon;
 	public Transform bulletPrefab;
+	public Transform spawnEffect;
 	
+	Vector2 spawnPos;
 	float shootCooldown;
 	
 	void Awake () {
+		spawnPos = transform.position;
 		respawn();
 	}
 	
@@ -27,6 +30,9 @@ public class Ship : MonoBehaviour {
 		shootCooldown = 0.0f;
 		
 		//TODO: Randomize position
+		transform.position = spawnPos;
+		gameObject.SetActive(true);
+		GameObject.Instantiate(spawnEffect, spawnPos, Quaternion.identity);
 		
 		foreach(Part part in GetComponentsInChildren<Part>()) {
 			part.respawn();
@@ -52,8 +58,8 @@ public class Ship : MonoBehaviour {
 		bool thrustingL = pressingL && !engineRight.GetComponent<Part>().broken;
 		bool thrustingR = pressingR && !engineLeft.GetComponent<Part>().broken;
 		
-		engineRight.GetComponentInChildren<ThrusterFX>().on  = thrustingL;
-		engineLeft.GetComponentInChildren<ThrusterFX>().on = thrustingR;
+		engineRight.GetComponentInChildren<Particles>().on  = thrustingL;
+		engineLeft.GetComponentInChildren<Particles>().on = thrustingR;
 		
 		if(thrustingL) {
 			rigidbody2D.AddForceAtPosition(
@@ -84,7 +90,8 @@ public class Ship : MonoBehaviour {
 		
 		//DEATH
 		if(cockpit.broken) {
-			Destroy(gameObject);
+			gameObject.SetActive(false);
+			Invoke("respawn", 2);
 		}
 	}
 }

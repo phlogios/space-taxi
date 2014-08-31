@@ -2,7 +2,7 @@
 using System.Collections;
 
 [ExecuteInEditMode]
-public class ThrusterFX : MonoBehaviour {
+public class Particles : MonoBehaviour {
 	
 	public bool on = false;
 	
