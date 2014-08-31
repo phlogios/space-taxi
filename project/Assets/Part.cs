@@ -12,17 +12,12 @@ public class Part : MonoBehaviour {
 	public Sprite[] sprites;
 	int hp;
 	
-	void Awake() {
-		respawn ();
-	}
-	
 	// Update is called once per frame
 	void Update () {
 	
 	}
 	
 	public void respawn() {
-		//TODO: Randomize position
 		hp = maxhp;
 		GetComponent<SpriteRenderer>().sprite = sprites[0];
 	}

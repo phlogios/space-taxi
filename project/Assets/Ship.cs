@@ -3,22 +3,39 @@ using System.Collections;
 
 public class Ship : MonoBehaviour {
 	
+	public float shootInterval = 0.5f;
+	public float force;
+	
 	public string buttonLeft = "PL1Left";
 	public string buttonRight = "PL1Right";
 	public string buttonShoot = "PL1Shoot";
 	
-	public float force;
 	public Engine engineLeft;
 	public Engine engineRight;
 	public Part cockpit;
+	public Transform bulletPrefab;
 	
-	// Use this for initialization
-	void Start () {
+	float shootCooldown;
 	
+	void Awake () {
+		respawn();
+	}
+	
+	public void respawn() {
+		shootCooldown = 0.0f;
+		
+		//TODO: Randomize position
+		
+		foreach(Part part in GetComponentsInChildren<Part>()) {
+			part.respawn();
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		
+		//MOVEMENT
+		
 		bool pressingL = Input.GetButton(buttonLeft);
 		bool pressingR = Input.GetButton(buttonRight);
 		foreach(Touch touch in Input.touches) {
@@ -45,6 +62,22 @@ public class Ship : MonoBehaviour {
 				transform.up * force * Time.deltaTime, transform.TransformPoint(-0.25f,0,0));
 		}
 		
+		//SHOOTING
+		shootCooldown -= Time.deltaTime;
+		if(Input.GetButton(buttonShoot)) {
+			if(shootCooldown <= 0) {
+				shootCooldown = shootInterval;
+				
+				Transform bulletObj = GameObject.Instantiate(bulletPrefab) as Transform;
+				bulletObj.transform.position = transform.position;
+				
+				foreach(Collider2D ownCollider in GetComponentsInChildren<Collider2D>()) {
+					Physics2D.IgnoreCollision(bulletObj.collider2D, ownCollider);
+				}
+			}
+		}
+		
+		//DEATH
 		if(cockpit.broken) {
 			Destroy(gameObject);
 		}
