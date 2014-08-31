@@ -55,7 +55,7 @@ public class Ship : MonoBehaviour {
 		gameObject.SetActive(true);
 		GameObject.Instantiate(spawnEffect, spawnPos, Quaternion.identity);
 		
-		foreach(Part part in GetComponentsInChildren<Part>()) {
+		foreach(Part part in GetComponentsInChildren<Part>(true)) {
 			part.respawn();
 		}
 	}
@@ -79,8 +79,8 @@ public class Ship : MonoBehaviour {
 		bool thrustingL = pressingL && !engineRight.GetComponent<Part>().broken;
 		bool thrustingR = pressingR && !engineLeft.GetComponent<Part>().broken;
 		
-		engineRight.GetComponentInChildren<Particles>().on  = thrustingL;
-		engineLeft.GetComponentInChildren<Particles>().on = thrustingR;
+		engineRight.GetComponentsInChildren<Particles>(true)[0].on  = thrustingL;
+        engineLeft.GetComponentsInChildren<Particles>(true)[0].on = thrustingR;
 		
 		if(thrustingL) {
 			rigidbody2D.AddForceAtPosition(

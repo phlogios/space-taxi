@@ -165,7 +165,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &100018
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -214,7 +214,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400008}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!4 &400006
 Transform:
   m_ObjectHideFlags: 1
@@ -228,7 +228,7 @@ Transform:
   - {fileID: 400002}
   - {fileID: 400010}
   m_Father: {fileID: 400008}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!4 &400008
 Transform:
   m_ObjectHideFlags: 1
@@ -239,7 +239,6 @@ Transform:
   m_LocalPosition: {x: 1.16947079, y: .103623852, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 400018}
   - {fileID: 400014}
   - {fileID: 400006}
   - {fileID: 400016}
@@ -283,7 +282,7 @@ Transform:
   - {fileID: 400000}
   - {fileID: 400012}
   m_Father: {fileID: 400008}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!4 &400016
 Transform:
   m_ObjectHideFlags: 1
@@ -293,9 +292,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 400018}
   m_Father: {fileID: 400008}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!4 &400018
 Transform:
   m_ObjectHideFlags: 1
@@ -306,7 +306,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 400008}
+  m_Father: {fileID: 400016}
   m_RootOrder: 0
 --- !u!50 &5000000
 Rigidbody2D:
@@ -403,6 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxhp: 3
+  partExplosion: {fileID: 400000, guid: 8f35ff30471e7764d9083ae2af224d82, type: 2}
   sprites:
   - {fileID: 21300000, guid: 70b7f3c44d4722443bc063fec45254b4, type: 3}
   - {fileID: 21300000, guid: 24f2a7357b887824ca0de7074a39df59, type: 3}
@@ -440,7 +441,7 @@ MonoBehaviour:
   cannon: {fileID: 11400020}
   bulletPrefab: {fileID: 400000, guid: a6e04fd3cb713cc41a0dbcb6c55457a4, type: 2}
   spawnEffect: {fileID: 400000, guid: 75f42826416f0094ca12bf89ba9bfe74, type: 2}
-  explosion: {fileID: 0}
+  explosion: {fileID: 400000, guid: 8f35ff30471e7764d9083ae2af224d82, type: 2}
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -488,6 +489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxhp: 3
+  partExplosion: {fileID: 400000, guid: 8f35ff30471e7764d9083ae2af224d82, type: 2}
   sprites:
   - {fileID: 21300000, guid: 70b7f3c44d4722443bc063fec45254b4, type: 3}
   - {fileID: 21300000, guid: 24f2a7357b887824ca0de7074a39df59, type: 3}
@@ -503,6 +505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxhp: 3
+  partExplosion: {fileID: 400000, guid: 8f35ff30471e7764d9083ae2af224d82, type: 2}
   sprites:
   - {fileID: 21300002, guid: f07bfe1175da213488aa8905cd025461, type: 3}
   - {fileID: 21300000, guid: 476f21929f331da408bf5bab329e66a8, type: 3}
@@ -518,6 +521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxhp: 3
+  partExplosion: {fileID: 0}
   sprites:
   - {fileID: 21300000, guid: 7ff34ef6dcf98094b989f7000f1b0184, type: 3}
   - {fileID: 21300000, guid: 121064df1dd2e9d4f8597891064fb91b, type: 3}
