@@ -4,6 +4,8 @@ using System.Collections;
 public class Part : MonoBehaviour {
 	
 	public int maxhp = 3;
+	public Transform partExplosion;
+	
 	public bool broken {
 		get {
 			return hp <= 0;
@@ -20,6 +22,7 @@ public class Part : MonoBehaviour {
 	public void respawn() {
 		hp = maxhp;
 		GetComponent<SpriteRenderer>().sprite = sprites[0];
+		gameObject.SetActive(true);
 	}
 	
 	void OnCollisionEnter2D(Collision2D col) {
@@ -30,15 +33,15 @@ public class Part : MonoBehaviour {
 			hp -= 1;
 			Debug.Log("1 Dmg (bullet)");
 		}
-		else if(velocity > 8) {
+		else if(velocity > 7) {
 			hp -= 6;
 			Debug.Log("6 Dmg");
 		}
-		else if(velocity > 5) {
-			hp -= 4;
+		else if(velocity > 3.5f) {
+			hp -= 5;
 			Debug.Log("4 Dmg");
 		}
-		else if(velocity > 2) {
+		else if(velocity > 1.6f) {
 			hp -= 2;
 			Debug.Log("2 Dmg");
 		}
@@ -50,12 +53,14 @@ public class Part : MonoBehaviour {
 			Debug.Log("0 Dmg");
 		}
 		
-		if(hp < 0) {
-			hp = 0;
+		if(hp <= -5) {
+			gameObject.SetActive(false);
+			GameObject.Instantiate(partExplosion, transform.position, Quaternion.identity);
 		}
 		
 		
-		int spriteIndex = Mathf.RoundToInt((sprites.Length-1) * (float)(maxhp-hp) / maxhp);
+		int cappedHP = Mathf.Max(0, hp);
+		int spriteIndex = Mathf.RoundToInt((sprites.Length-1) * (float)(maxhp-cappedHP) / maxhp);
 		if(spriteIndex == sprites.Length - 1 && hp > 0 && sprites.Length > 1)
 			spriteIndex = sprites.Length - 2;
 		
