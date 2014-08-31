@@ -19,19 +19,39 @@ public class Ship : MonoBehaviour {
 	public Transform spawnEffect;
     public Transform explosion;
 	
-	Vector2 spawnPos;
 	float shootCooldown;
 	
-	void Awake () {
-		spawnPos = transform.position;
+	void Start () {
 		respawn();
 	}
 	
 	public void respawn() {
 		shootCooldown = 0.0f;
 		
-		//TODO: Randomize position
+		Vector2 spawnPos = Vector2.zero;
+		Ship[] ships = GameObject.FindObjectsOfType<Ship>();
+		for(int i=0; i < 20; i++) { //try at most 20 times to avoid getting infinite loops
+			SpawnPoint[] spawnPoints = GameObject.FindObjectsOfType<SpawnPoint>();
+			int spawnIndex = Random.Range(0, spawnPoints.Length);
+			Debug.Log("index: "+spawnIndex);
+			spawnPos = spawnPoints[spawnIndex].transform.position;
+			
+			bool shipNearby = false;
+			foreach(Ship ship in ships) {
+				if(ship != this && Vector2.Distance(ship.transform.position, spawnPos) < 2) {
+					shipNearby = true;
+					Debug.Log("nearby");
+					break;
+				}
+			}
+			if(!shipNearby) {
+				Debug.Log("spawn");
+				break;
+			}
+			//otherwise, try randomizing again.
+		}
 		transform.position = spawnPos;
+		
 		gameObject.SetActive(true);
 		GameObject.Instantiate(spawnEffect, spawnPos, Quaternion.identity);
 		
