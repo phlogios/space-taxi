@@ -18,5 +18,7 @@ public class Score : MonoBehaviour {
 	void Update () {
         //player1Score.text = ""+player1.score;
         //player2Score.text = ""+player2.score;
+		player1Score.text = ""+GameObject.Find("Ship(Local)").GetComponent<Ship>().score;
+		player2Score.text = "";
 	}
 }

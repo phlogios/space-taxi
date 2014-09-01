@@ -10,7 +10,8 @@ public class NetworkManager : MonoBehaviour {
 		
 		StreamReader cfg = new StreamReader("network.txt");
 		string ip = cfg.ReadLine();
-		if(ip == null || ip.Trim() == "")
+		//string ip = "80.78.215.45";//cfg.ReadLine();
+		if(Application.isEditor || ip == null || ip.Trim() == "")
 			host();
 		else
 			join(ip);
