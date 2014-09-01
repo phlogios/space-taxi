@@ -185,6 +185,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 400018}
   - 212: {fileID: 21200008}
+  - 114: {fileID: 11400032}
+  - 148: {fileID: 14800014}
   m_Layer: 0
   m_Name: Ship_paint
   m_TagString: Untagged
@@ -770,7 +772,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 100
   catastrophe: 0
-  thrusting: 0
 --- !u!114 &11400026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -784,7 +785,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 100
   catastrophe: 0
-  thrusting: 0
 --- !u!114 &11400028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -805,6 +805,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e51118b507a57641ab0331a296aa421, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400032
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2a921fe5c39ca240b0e796755672019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!148 &14800000
@@ -888,6 +899,18 @@ NetworkView:
   m_Enabled: 1
   m_StateSynchronization: 2
   m_Observed: {fileID: 11400024}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
+--- !u!148 &14800014
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100018}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 0}
   m_ViewID:
     m_ID: 0
     m_Type: 0

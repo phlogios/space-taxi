@@ -36,24 +36,30 @@ public class Part : MonoBehaviour {
 	}
 	
 	public void collideCallback(Collision col) {
-		if(!networkView.isMine)
-			return;
-		
-		float velocity = Mathf.Abs(Vector3.Dot(col.relativeVelocity, col.contacts[0].normal.normalized));
 		
 		Bullet bullet = col.contacts[0].otherCollider.GetComponent<Bullet>();
-        Part otherShip = col.contacts[0].otherCollider.GetComponent<Part>();
-        if (otherShip != null)
-        {
-            transform.parent.GetComponent<Ship>().lastAttacker = otherShip.GetComponentInParent<Ship>();
-            Debug.Log("Attacked!");
-        }
 
 		if(bullet != null) {
 			hp -= 1;
             transform.parent.GetComponent<Ship>().lastAttacker = bullet.shooter;
 			Debug.Log("1 Dmg (bullet)");
 		}
+		
+		////////////////////////////////
+		// LOCAL ONLY AFTER HERE
+		////////////////////////////////
+		if(!networkView.isMine)
+			return;
+		
+		float velocity = Mathf.Abs(Vector3.Dot(col.relativeVelocity, col.contacts[0].normal.normalized));
+		
+        Part otherShip = col.contacts[0].otherCollider.GetComponent<Part>();
+        if (otherShip != null)
+        {
+            transform.parent.GetComponent<Ship>().lastAttacker = otherShip.GetComponentInParent<Ship>();
+            Debug.Log("Attacked!");
+        }
+		
 		else if(velocity > 5) {
 			hp -= 6;
 			//Debug.Log("6 Dmg");

@@ -33,6 +33,7 @@ public class Ship : MonoBehaviour {
     int ammo;
 	bool selfdestroying = false;
 	float destructTimer;
+	string prevDestructTimerText;
 	
 	void Start () {
 		if(networkView.isMine)
@@ -89,6 +90,24 @@ public class Ship : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+        //SCORING
+        if (lastAttacker != null)
+        {
+            lastAttackerCooldown -= Time.deltaTime;
+            if (lastAttackerCooldown < 0)
+            {
+                lastAttacker = null;
+                lastAttackerCooldown = 2.0f;
+            }
+        }
+		
+		// ROTATE TIMER TEXT
+		destructTimerText.transform.rotation = Quaternion.identity;
+		destructTimerText.transform.position = transform.position + 0.9f * Vector3.up;
+		
+		////////////////////////////////
+		// LOCAL ONLY AFTER HERE
+		////////////////////////////////
 		if(!networkView.isMine)
 			return;
 		
@@ -143,17 +162,6 @@ public class Ship : MonoBehaviour {
                 ammo = maxAmmo;
             }
         }
-
-        //SCORING
-        if (lastAttacker != null)
-        {
-            lastAttackerCooldown -= Time.deltaTime;
-            if (lastAttackerCooldown < 0)
-            {
-                lastAttacker = null;
-                lastAttackerCooldown = 2.0f;
-            }
-        }
 		
 		//SELF DESCTRUCTION
 		if(!selfdestroying && Input.GetButtonDown(buttonSelfDestroy)) {
@@ -164,47 +172,55 @@ public class Ship : MonoBehaviour {
 		if(selfdestroying) {
 			destructTimer -= Time.deltaTime;
 			destructTimerText.text = ""+(int)(destructTimer + 1.0f);
-			destructTimerText.transform.rotation = Quaternion.identity;
-			destructTimerText.transform.position = transform.position + 0.9f * Vector3.up;
 		}
 		else {
 			destructTimerText.text = "";
 		}
-
+		if(prevDestructTimerText != destructTimerText.text) {
+			networkView.RPC("setDestructTimerText", RPCMode.Others, destructTimerText.text);
+		}
+		prevDestructTimerText = destructTimerText.text;
+		
+        //DEATH
         bool selfDestroyed = (selfdestroying && destructTimer <= 0.0f);
-        if (selfDestroyed)
-        {
-            score--;
-        }
-
-		//DEATH
-        bool dead = cockpit.broken || selfDestroyed;
+		bool dead = cockpit.broken || selfDestroyed;
 		if(dead) {
-            if (lastAttacker)
-            {
-                Ship attackerShip = lastAttacker.GetComponent<Ship>();
-                if (attackerShip && !selfDestroyed)
-                {
-                    attackerShip.score++;
-                }
-            }
-
 			networkView.RPC("death", RPCMode.All);
 		}
 	}
 	
 	void OnCollisionEnter(Collision col) {
+		//forward to part
 		col.contacts[0].thisCollider.GetComponent<Part>().collideCallback(col);
 	}
 	
 	[RPC]
 	public void death() {Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
 		gameObject.SetActive(false);
+	
+        bool selfDestroyed = (selfdestroying && destructTimer <= 0.0f);
+		if (selfDestroyed)
+        {
+            score--;
+        }
+        if (lastAttacker)
+        {
+            Ship attackerShip = lastAttacker.GetComponent<Ship>();
+            if (attackerShip && !selfDestroyed)
+            {
+                attackerShip.score++;
+            }
+        }
 		
 		foreach(ParticleSystem particle in GetComponentsInChildren<ParticleSystem>(true)) {
 			particle.Clear();
 		}
 		
 		Invoke("respawn", 2);
+	}
+	
+	[RPC]
+	public void setDestructTimerText(string newtext) {
+		destructTimerText.text = newtext;
 	}
 }

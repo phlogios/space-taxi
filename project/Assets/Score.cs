@@ -15,10 +15,17 @@ public class Score : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
         //player1Score.text = ""+player1.score;
         //player2Score.text = ""+player2.score;
-		player1Score.text = ""+GameObject.Find("Ship(Local)").GetComponent<Ship>().score;
+		
+		if(!player1) {
+			GameObject ship = GameObject.Find("Ship(Local)");
+			player1 = ship.GetComponent<Ship>();
+		}
+		if(player1)
+			player1Score.text = ""+player1.score;
+		
 		player2Score.text = "";
 	}
 }

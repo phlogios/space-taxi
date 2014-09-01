@@ -22,7 +22,7 @@ public class Thruster : MonoBehaviour {
 
         if (networkView.isMine && transform.GetComponent<Part>().brokeThisFrame)
         {
-            catastrophe = true;//DEBUG Random.Range(0.0f, 1.0f) < 0.4f;
+            catastrophe = Random.Range(0.0f, 1.0f) < 0.4f;
         }
 
         transform.GetComponentInChildren<Particles>().on = false;
