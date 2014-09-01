@@ -35,6 +35,11 @@ public class Ship : MonoBehaviour {
 	float destructTimer;
 	
 	void Start () {
+		if(networkView.isMine)
+			gameObject.name = "Ship(Local)";
+		else
+			gameObject.name = "Ship(Remote)";
+		
 		respawn();
 	}
 	
@@ -46,7 +51,10 @@ public class Ship : MonoBehaviour {
         reloadProgress = 0.0f;
         ammo = maxAmmo;
 		
-		Vector2 spawnPos = Vector2.zero;
+		rigidbody.velocity = Vector3.zero;
+		rigidbody.angularVelocity = Vector3.zero;
+		
+		Vector3 spawnPos = Vector3.zero;
 		Ship[] ships = GameObject.FindObjectsOfType<Ship>();
 		for(int i=0; i < 20; i++) { //try at most 20 times to avoid getting infinite loops
 			SpawnPoint[] spawnPoints = GameObject.FindObjectsOfType<SpawnPoint>();
@@ -55,7 +63,7 @@ public class Ship : MonoBehaviour {
 			
 			bool shipNearby = false;
 			foreach(Ship ship in ships) {
-				if(ship != this && Vector2.Distance(ship.transform.position, spawnPos) < 2) {
+				if(ship != this && Vector3.Distance(ship.transform.position, spawnPos) < 2) {
 					shipNearby = true;
 					break;
 				}
@@ -68,7 +76,10 @@ public class Ship : MonoBehaviour {
 		transform.position = spawnPos;
 		
 		gameObject.SetActive(true);
-		GameObject.Instantiate(spawnEffect, spawnPos, Quaternion.identity);
+		
+		if(networkView.isMine) {
+			Network.Instantiate(spawnEffect, spawnPos, Quaternion.identity, 0);
+		}
 		
 		foreach(Part part in GetComponentsInChildren<Part>(true)) {
 			part.respawn();
@@ -78,10 +89,13 @@ public class Ship : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		//MOVEMENT
+		if(!networkView.isMine)
+			return;
 		
+		//MOVEMENT
 		bool pressingL = Input.GetButton(buttonLeft);
 		bool pressingR = Input.GetButton(buttonRight);
+		
 		foreach(Touch touch in Input.touches) {
 			if(touch.position.x / Screen.width > 0.5f) {
 				pressingR = true;	
@@ -110,20 +124,13 @@ public class Ship : MonoBehaviour {
 				shootCooldown = shootInterval;
                 ammo--;
 				
-				Transform bulletObj = GameObject.Instantiate(bulletPrefab) as Transform;
-				bulletObj.transform.position = transform.position + 0.4f * transform.up;
-				bulletObj.rigidbody2D.velocity = rigidbody2D.velocity
-											+ (Vector2)transform.up * bulletSpeed
-											- 0.4f * (Vector2)transform.right * rigidbody2D.angularVelocity * Mathf.Deg2Rad;
+				Transform bulletObj = Network.Instantiate(bulletPrefab, transform.position + 0.4f * transform.up, Quaternion.identity, 0) as Transform;
+				bulletObj.rigidbody.velocity = rigidbody.velocity
+											+ transform.up * bulletSpeed
+											- 0.4f * transform.right * rigidbody.angularVelocity.z * Mathf.Deg2Rad;
 				
                 //apply recoil
-                rigidbody2D.AddForceAtPosition(-transform.up * recoil * Time.deltaTime, transform.TransformPoint(0, 1, 0));
-
-				//disable collision with self
-				foreach(Collider2D ownCollider in GetComponentsInChildren<Collider2D>()) {
-					Physics2D.IgnoreCollision(bulletObj.collider2D, ownCollider);
-				}
-                bulletObj.GetComponent<Bullet>().shooter = this;
+                rigidbody.AddForceAtPosition(-transform.up * recoil * Time.deltaTime, transform.TransformPoint(0, 1, 0));
 			}
 		}
 
@@ -158,7 +165,7 @@ public class Ship : MonoBehaviour {
 			destructTimer -= Time.deltaTime;
 			destructTimerText.text = ""+(int)(destructTimer + 1.0f);
 			destructTimerText.transform.rotation = Quaternion.identity;
-			destructTimerText.transform.position = (Vector2)transform.position + 0.9f * Vector2.up;
+			destructTimerText.transform.position = transform.position + 0.9f * Vector3.up;
 		}
 		else {
 			destructTimerText.text = "";
@@ -182,14 +189,22 @@ public class Ship : MonoBehaviour {
                 }
             }
 
-            Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-			gameObject.SetActive(false);
-			
-			foreach(ParticleSystem particle in GetComponentsInChildren<ParticleSystem>(true)) {
-				particle.Clear();
-			}
-			
-			Invoke("respawn", 2);
+			networkView.RPC("death", RPCMode.All);
 		}
+	}
+	
+	void OnCollisionEnter(Collision col) {
+		col.contacts[0].thisCollider.GetComponent<Part>().collideCallback(col);
+	}
+	
+	[RPC]
+	public void death() {Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+		gameObject.SetActive(false);
+		
+		foreach(ParticleSystem particle in GetComponentsInChildren<ParticleSystem>(true)) {
+			particle.Clear();
+		}
+		
+		Invoke("respawn", 2);
 	}
 }

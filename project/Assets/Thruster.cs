@@ -11,6 +11,7 @@ public class Thruster : MonoBehaviour {
 
 	// Use this for initialization
 	void OnEnable () {
+		thrusting = false;
         catastrophe = false;
         broken = false;
 	}
@@ -22,7 +23,7 @@ public class Thruster : MonoBehaviour {
 
         if (transform.GetComponent<Part>().brokeThisFrame)
         {
-            catastrophe = Random.Range(0.0f, 1.0f) < 0.4f;
+            //catastrophe = true;//DEBUG Random.Range(0.0f, 1.0f) < 0.4f;
         }
 
         transform.GetComponentInChildren<Particles>().on = false;
@@ -30,7 +31,7 @@ public class Thruster : MonoBehaviour {
         {
             transform.GetComponentInChildren<Particles>().on = true;
 
-            GetComponentInParent<Rigidbody2D>().AddForceAtPosition(
+            GetComponentInParent<Rigidbody>().AddForceAtPosition(
             GetComponentInParent<Transform>().up * force * Time.deltaTime, transform.TransformPoint(0, 0, 0));
             if (!audio.isPlaying)
             {
@@ -54,6 +55,6 @@ public class Thruster : MonoBehaviour {
         {
             thrusting = true;
         }
-        Debug.Log("Thrusting!");
+        //Debug.Log("Thrusting!");
     }
 }

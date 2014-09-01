@@ -12,12 +12,11 @@ public class Score : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        player1Score.text = ""+player1.score;
-        player2Score.text = ""+player2.score;
+        //player1Score.text = ""+player1.score;
+        //player2Score.text = ""+player2.score;
 	}
 }
