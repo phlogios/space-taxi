@@ -9,7 +9,8 @@ public class SpawnShip : MonoBehaviour {
 	void Awake () {
 		if(Network.connections.Length == 0)
 			Application.LoadLevel("connect");
-		Network.Instantiate(shipPrefab, Vector3.zero, Quaternion.identity, 0);
+		else
+			Network.Instantiate(shipPrefab, Vector3.zero, Quaternion.identity, 0);
 	}
 	
 	// Update is called once per frame
