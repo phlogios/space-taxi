@@ -171,13 +171,17 @@ public class Ship : MonoBehaviour {
 		
 		if(selfdestroying) {
 			destructTimer -= Time.deltaTime;
-			destructTimerText.text = ""+(int)(destructTimer + 1.0f);
+			if(destructTimer >= 0)
+				destructTimerText.text = ""+(int)(destructTimer + 1.0f);
+			else
+				destructTimerText.text = ""; //needed for beep check
 		}
 		else {
 			destructTimerText.text = "";
 		}
 		if(prevDestructTimerText != destructTimerText.text) {
 			networkView.RPC("setDestructTimerText", RPCMode.Others, destructTimerText.text);
+			beep();
 		}
 		prevDestructTimerText = destructTimerText.text;
 		
@@ -219,8 +223,14 @@ public class Ship : MonoBehaviour {
 		Invoke("respawn", 2);
 	}
 	
+	void beep() {
+		if(destructTimerText.text != "")
+			audio.Play();
+	}
+	
 	[RPC]
 	public void setDestructTimerText(string newtext) {
 		destructTimerText.text = newtext;
+		beep();
 	}
 }
