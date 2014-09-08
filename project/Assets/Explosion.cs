@@ -8,7 +8,6 @@ public class Explosion : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Rigidbody2D[] rigidbodies = GameObject.FindObjectsOfType<Rigidbody2D>();
-        Debug.Log(force);
         foreach(Rigidbody2D body in rigidbodies) {
             Vector2 direction = -(transform.position - body.transform.position);
             body.AddForce(direction.normalized * force * Mathf.Min(1.0f / direction.magnitude, 1.0f));

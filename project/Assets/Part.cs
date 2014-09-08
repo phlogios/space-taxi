@@ -47,7 +47,7 @@ public class Part : MonoBehaviour {
         }
 
 		if(bullet != null) {
-			hp -= 1;
+			hp -= (int) bullet.damage;
             transform.GetComponentInParent<Ship>().lastAttacker = bullet.shooter;
 			//Debug.Log("1 Dmg (bullet)");
 		}

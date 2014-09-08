@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour {
 	public Transform bulletSound;
 	
     public Ship shooter;
+    public float damage;
 	// Use this for initialization
 	void Start () {
 		Instantiate(bulletSound);

@@ -71,6 +71,7 @@ MonoBehaviour:
   dinkEffect: {fileID: 400000, guid: 8a255d40dc7ebd949829f91ced71b1d3, type: 2}
   bulletSound: {fileID: 400000, guid: 05ac464ec4809c247b5562281d426a19, type: 2}
   shooter: {fileID: 0}
+  damage: 2
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

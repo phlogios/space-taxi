@@ -54,6 +54,5 @@ public class Thruster : MonoBehaviour {
         {
             thrusting = true;
         }
-        Debug.Log("Thrusting!");
     }
 }
