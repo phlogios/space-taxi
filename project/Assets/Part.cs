@@ -8,6 +8,7 @@ public class Part : MonoBehaviour {
 	public Transform partExplosion;
 
     public bool brokeThisFrame;
+    public bool detachChildrenOnDeath;
 
 	public bool broken {
 		get {
@@ -20,7 +21,12 @@ public class Part : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+        brokeThisFrame = false;
+        if (broken && !brokenLastFrame)
+        {
+            brokeThisFrame = true;
+        }
+        brokenLastFrame = broken;
 	}
 	
 	public void respawn() {
@@ -36,13 +42,13 @@ public class Part : MonoBehaviour {
         Part otherShip = col.contacts[0].collider.GetComponent<Part>();
         if (otherShip != null)
         {
-            transform.parent.GetComponent<Ship>().lastAttacker = otherShip.GetComponentInParent<Ship>();
+            transform.GetComponentInParent<Ship>().lastAttacker = otherShip.GetComponentInParent<Ship>();
             Debug.Log("Attacked!");
         }
 
 		if(bullet != null) {
 			hp -= 1;
-            transform.parent.GetComponent<Ship>().lastAttacker = bullet.shooter;
+            transform.GetComponentInParent<Ship>().lastAttacker = bullet.shooter;
 			//Debug.Log("1 Dmg (bullet)");
 		}
 		else if(velocity > 5) {
@@ -65,12 +71,6 @@ public class Part : MonoBehaviour {
 			//Debug.Log("0 Dmg");
 		}
 
-        brokeThisFrame = false;
-        if (broken && !brokenLastFrame)
-        {
-            brokeThisFrame = true;
-        }
-        brokenLastFrame = broken;
 
 		if(hp <= explodehp) {
 			gameObject.SetActive(false);

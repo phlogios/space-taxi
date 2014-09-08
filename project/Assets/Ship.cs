@@ -82,14 +82,20 @@ public class Ship : MonoBehaviour {
 		
 		bool pressingL = Input.GetButton(buttonLeft);
 		bool pressingR = Input.GetButton(buttonRight);
+        bool shooting = false;
 		foreach(Touch touch in Input.touches) {
-			if(touch.position.x / Screen.width > 0.5f) {
+			if(touch.position.x / Screen.width > 0.5f && touch.position.y / Screen.height < 0.5f) {
 				pressingR = true;	
 			}
-			else {
+            else if (touch.position.x / Screen.width < 0.5f && touch.position.y / Screen.height < 0.5f)
+            {
 				pressingL = true;
 			}
-		}
+            if (touch.position.y / Screen.height > 0.5f)
+            {
+                shooting = true;
+            }
+      	}
 
         if (pressingL)
         {
@@ -104,8 +110,10 @@ public class Ship : MonoBehaviour {
 		
 		
 		//SHOOTING
+        if (Input.GetButton(buttonShoot))
+            shooting = true;
 		shootCooldown -= Time.deltaTime;
-		if(Input.GetButton(buttonShoot) && !cannon.broken && ammo > 0) {
+		if(shooting && !cannon.broken && ammo > 0) {
 			if(shootCooldown <= 0) {
 				shootCooldown = shootInterval;
                 ammo--;
@@ -154,7 +162,7 @@ public class Ship : MonoBehaviour {
 			destructTimer = 3.0f;
 		}
 		
-		if(selfdestroying) {
+		if(selfdestroying && destructTimer > 0.0f) {
 			destructTimer -= Time.deltaTime;
 			destructTimerText.text = ""+(int)(destructTimer + 1.0f);
 			destructTimerText.transform.rotation = Quaternion.identity;
@@ -165,11 +173,6 @@ public class Ship : MonoBehaviour {
 		}
 
         bool selfDestroyed = (selfdestroying && destructTimer <= 0.0f);
-        if (selfDestroyed)
-        {
-            score--;
-        }
-
 		//DEATH
         bool dead = cockpit.broken || selfDestroyed;
 		if(dead) {
@@ -182,7 +185,13 @@ public class Ship : MonoBehaviour {
                 }
             }
 
-            Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+            Transform explosionObject = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity) as Transform;
+            if (selfDestroyed)
+            {
+                Explosion e = explosionObject.GetComponent<Explosion>();
+                e.force = 400.0f;
+                e.owner = transform.GetComponent<Ship>();
+            }
 			gameObject.SetActive(false);
 			
 			foreach(ParticleSystem particle in GetComponentsInChildren<ParticleSystem>(true)) {
