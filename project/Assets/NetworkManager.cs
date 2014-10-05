@@ -26,7 +26,7 @@ public class NetworkManager : MonoBehaviour {
 	}
 	
 	void host() {
-		NetworkConnectionError result = Network.InitializeServer(1, 2233, false);
+		NetworkConnectionError result = Network.InitializeServer(3, 2233, false);
 		Debug.Log("Hosting Server");
 		Debug.Log(result);
 	}
