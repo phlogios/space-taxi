@@ -33,6 +33,7 @@ public class Ship : MonoBehaviour {
     int ammo;
 	bool selfdestroying = false;
 	float destructTimer;
+	string prevDestructTimerText;
 	
 	void Start () {
 		respawn();
@@ -162,16 +163,24 @@ public class Ship : MonoBehaviour {
 			destructTimer = 3.0f;
 		}
 		
-		if(selfdestroying && destructTimer > 0.0f) {
+		if(selfdestroying) {
 			destructTimer -= Time.deltaTime;
-			destructTimerText.text = ""+(int)(destructTimer + 1.0f);
-			destructTimerText.transform.rotation = Quaternion.identity;
-			destructTimerText.transform.position = (Vector2)transform.position + 0.9f * Vector2.up;
-		}
-		else {
-			destructTimerText.text = "";
+			if(destructTimer >= 0) {
+				destructTimerText.text = ""+(int)(destructTimer + 1.0f);
+				destructTimerText.transform.rotation = Quaternion.identity;
+				destructTimerText.transform.position = transform.position + Vector3.up * 0.9f;
+			}
+			else {
+				destructTimerText.text = ""; //needed for beep check
+			}
 		}
 
+		if(prevDestructTimerText != destructTimerText.text) {
+			beep();
+		}
+		prevDestructTimerText = destructTimerText.text;
+		
+        //DEATH
         bool selfDestroyed = (selfdestroying && destructTimer <= 0.0f);
 		//DEATH
         bool dead = cockpit.broken || selfDestroyed;
@@ -200,5 +209,16 @@ public class Ship : MonoBehaviour {
 			
 			Invoke("respawn", 2);
 		}
+	}
+	
+	void beep() {
+		if(destructTimerText.text != "")
+			audio.Play();
+	}
+	
+	[RPC]
+	public void setDestructTimerText(string newtext) {
+		destructTimerText.text = newtext;
+		beep();
 	}
 }

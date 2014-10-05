@@ -57,7 +57,7 @@ InputManager:
     descriptiveName: Player 1 Self destruction
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: p
+    positiveButton: down
     altNegativeButton: 
     altPositiveButton: 
     gravity: 0
