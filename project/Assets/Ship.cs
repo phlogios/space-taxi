@@ -9,6 +9,7 @@ public class Ship : MonoBehaviour {
     public int maxAmmo = 3;
     public float reloadTime = 3;
     public int score = 0;
+	public int accidents = 0;
 	
 	public string buttonLeft = "PL1Left";
 	public string buttonRight = "PL1Right";
@@ -36,6 +37,7 @@ public class Ship : MonoBehaviour {
 	string prevDestructTimerText;
 	
 	void Start () {
+		accidents = 0;
 		respawn();
 	}
 	
@@ -192,7 +194,9 @@ public class Ship : MonoBehaviour {
                 {
                     attackerShip.score++;
                 }
-            }
+            } else {
+				accidents++;
+			}
 
             Transform explosionObject = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity) as Transform;
             if (selfDestroyed)

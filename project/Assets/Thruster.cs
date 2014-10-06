@@ -14,6 +14,17 @@ public class Thruster : MonoBehaviour {
         catastrophe = false;
         broken = false;
 	}
+
+	void Start() {
+		float thrusterPower = 100;
+		UnitySplitForce.SFVariation v = UnitySplitForce.SFManager.Instance.getExperiment("testExperiment");
+		if (v != null) {
+			thrusterPower = v.VariationData ("Thruster power").DataToFloat (thrusterPower);
+			force = thrusterPower;
+		} else {
+			force = 100;
+		}
+	}
 	
 	// Update is called once per frame
     void Update()
