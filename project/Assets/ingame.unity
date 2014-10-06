@@ -110,7 +110,7 @@ MonoBehaviour:
   brokeThisFrame: 0
   detachChildrenOnDeath: 0
   sprites:
-  - {fileID: 21300002, guid: f07bfe1175da213488aa8905cd025461, type: 3}
+  - {fileID: 21300000, guid: f07bfe1175da213488aa8905cd025461, type: 3}
   - {fileID: 21300000, guid: 476f21929f331da408bf5bab329e66a8, type: 3}
   - {fileID: 21300000, guid: 476f21929f331da408bf5bab329e66a8, type: 3}
 --- !u!4 &5566591
@@ -7146,7 +7146,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1345091757
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300002, guid: f07bfe1175da213488aa8905cd025461, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f07bfe1175da213488aa8905cd025461, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &987903587
 Transform:
@@ -8518,7 +8518,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1345091757
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300002, guid: f07bfe1175da213488aa8905cd025461, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f07bfe1175da213488aa8905cd025461, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1174135381
 Transform:
@@ -11716,7 +11716,7 @@ MonoBehaviour:
   brokeThisFrame: 0
   detachChildrenOnDeath: 0
   sprites:
-  - {fileID: 21300002, guid: f07bfe1175da213488aa8905cd025461, type: 3}
+  - {fileID: 21300000, guid: f07bfe1175da213488aa8905cd025461, type: 3}
   - {fileID: 21300000, guid: 476f21929f331da408bf5bab329e66a8, type: 3}
   - {fileID: 21300000, guid: 476f21929f331da408bf5bab329e66a8, type: 3}
 --- !u!1 &1789087683
