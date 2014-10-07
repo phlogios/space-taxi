@@ -22,6 +22,7 @@ public class Thruster : MonoBehaviour {
 			thrusterPower = v.VariationData ("Thruster power").DataToFloat (thrusterPower);
 			force = thrusterPower;
 		} else {
+			Debug.Log("Defaulted thruster power!");
 			force = 100;
 		}
 	}
