@@ -35,7 +35,8 @@ public class splitforceScript : MonoBehaviour {
 		
 		UnitySplitForce.SFManager.Instance.initCallback = SplitforceInitialised;
 		UnitySplitForce.SFManager.Init ("imrentqvlj", "piqdyhlomdwbkazjmxfwnmnwrefeuclhpluolnxdaythdsclwa", new Hashtable () {
-			{"isDebug", false}
+			{"isDebug", false},
+			{"skipCache", true}
 		});
 	}
 
