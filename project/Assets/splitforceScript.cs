@@ -3,6 +3,8 @@ using System.Collections;
 
 public class splitforceScript : MonoBehaviour {
 
+	public static string redirectToScene = "ingame";
+	
 	void  SplitforceInitialised(bool isFailed, Hashtable additionalData) {
 		// Proceed with game steps
 		Debug.Log("Initing splitforce");
@@ -17,6 +19,8 @@ public class splitforceScript : MonoBehaviour {
 				Debug.Log("Failed to init splitforce");
 			}
 		}
+		
+		Application.LoadLevel(redirectToScene);
 	}
 
 	void Awake () {
