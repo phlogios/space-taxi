@@ -5,7 +5,6 @@ public class splitforceScript : MonoBehaviour {
 
 	void  SplitforceInitialised(bool isFailed, Hashtable additionalData) {
 		// Proceed with game steps
-		PlayerPrefs.DeleteAll();
 		Debug.Log("Initing splitforce");
 		UnitySplitForce.SFVariation v = UnitySplitForce.SFManager.Instance.initExperiment("testExperiment");
 		if (v != null) {
