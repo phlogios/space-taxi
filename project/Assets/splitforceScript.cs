@@ -4,6 +4,7 @@ using System.Collections;
 public class splitforceScript : MonoBehaviour {
 
 	public static string redirectToScene = "ingame";
+	public static splitforceScript instance = null;
 	
 	void  SplitforceInitialised(bool isFailed, Hashtable additionalData) {
 		// Proceed with game steps
@@ -24,6 +25,14 @@ public class splitforceScript : MonoBehaviour {
 	}
 
 	void Awake () {
+		if(instance != null) {
+			Destroy(gameObject);
+			return;
+		}
+		
+		instance = this;
+		DontDestroyOnLoad(gameObject);
+		
 		UnitySplitForce.SFManager.Instance.initCallback = SplitforceInitialised;
 		UnitySplitForce.SFManager.Init ("imrentqvlj", "piqdyhlomdwbkazjmxfwnmnwrefeuclhpluolnxdaythdsclwa", new Hashtable () {
 			{"isDebug", false}
