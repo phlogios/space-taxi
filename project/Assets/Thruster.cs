@@ -16,11 +16,11 @@ public class Thruster : MonoBehaviour {
 	}
 
 	void Start() {
-		float thrusterPower = 100;
-		UnitySplitForce.SFVariation v = UnitySplitForce.SFManager.Instance.getExperiment("testExperiment");
+		float thrusterForce = 100;
+		UnitySplitForce.SFVariation v = UnitySplitForce.SFManager.Instance.initExperiment("testExperiment");
 		if (v != null) {
-			thrusterPower = v.VariationData ("Thruster power").DataToFloat (thrusterPower);
-			force = thrusterPower;
+			thrusterForce = v.VariationData("Thruster force").DataToFloat(thrusterForce);
+			force = thrusterForce;
 		} else {
 			Debug.Log("Defaulted thruster power!");
 			force = 100;

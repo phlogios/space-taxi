@@ -1,8 +1,7 @@
 fileFormatVersion: 2
-guid: 70b7f3c44d4722443bc063fec45254b4
+guid: b9500d17424e54eb6a9e9844caab0e73
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: thruster
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -22,13 +21,13 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -3
+  textureFormat: -1
   maxTextureSize: 1024
   textureSettings:
-    filterMode: 0
-    aniso: 1
+    filterMode: -1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50

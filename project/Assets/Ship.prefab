@@ -257,7 +257,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.16947079, y: .103623852, z: 0}
+  m_LocalPosition: {x: -4.58179617, y: 1.2538774, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400016}
@@ -432,7 +432,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: cc3211920eba77048bb063a4870313a7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: .289999992
-  m_Pitch: 1.10000002
+  m_Pitch: 1.20000005
   Loop: 1
   Mute: 0
   Priority: 128
@@ -490,7 +490,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: cc3211920eba77048bb063a4870313a7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: .289999992
-  m_Pitch: .899999976
+  m_Pitch: 1
   Loop: 1
   Mute: 0
   Priority: 128
@@ -677,10 +677,11 @@ MonoBehaviour:
   maxAmmo: 3
   reloadTime: 3
   score: 0
-  buttonLeft: PL1Left
-  buttonRight: PL1Right
-  buttonShoot: PL1Shoot
-  buttonSelfDestroy: PL1SelfDestroy
+  accidents: 0
+  buttonLeft: PL2Left
+  buttonRight: PL2Right
+  buttonShoot: PL2Shoot
+  buttonSelfDestroy: PL2SelfDestroy
   engineLeft: {fileID: 11400024}
   engineRight: {fileID: 11400026}
   cockpit: {fileID: 11400018}
@@ -751,9 +752,8 @@ MonoBehaviour:
   brokeThisFrame: 0
   detachChildrenOnDeath: 0
   sprites:
-  - {fileID: 21300000, guid: f07bfe1175da213488aa8905cd025461, type: 3}
-  - {fileID: 21300000, guid: 476f21929f331da408bf5bab329e66a8, type: 3}
-  - {fileID: 21300000, guid: 476f21929f331da408bf5bab329e66a8, type: 3}
+  - {fileID: 21300000, guid: 84c3fbe7a310e43d1af2423850c4721e, type: 3}
+  - {fileID: 21300000, guid: 59806f34827774a9b9aff0f91462e20d, type: 3}
 --- !u!114 &11400020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -771,7 +771,8 @@ MonoBehaviour:
   brokeThisFrame: 0
   detachChildrenOnDeath: 0
   sprites:
-  - {fileID: 21300000, guid: 7ff34ef6dcf98094b989f7000f1b0184, type: 3}
+  - {fileID: 21300000, guid: 6acb7354f5e45480c9bf1fa068f25f9c, type: 3}
+  - {fileID: 21300000, guid: 9726e1ca3a4c9436b9aba0c95c6b0559, type: 3}
 --- !u!114 &11400022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5125,7 +5126,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1345091757
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7ff34ef6dcf98094b989f7000f1b0184, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6acb7354f5e45480c9bf1fa068f25f9c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21200002
 SpriteRenderer:
@@ -5147,7 +5148,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 1345091757
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: f07bfe1175da213488aa8905cd025461, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 84c3fbe7a310e43d1af2423850c4721e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21200004
 SpriteRenderer:
@@ -5214,7 +5215,7 @@ SpriteRenderer:
   m_SortingLayerID: 1345091757
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 3705d6073151edd499eaabe16b842428, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: .392156869}
+  m_Color: {r: 0, g: .580882311, b: .220334545, a: .392156869}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -1,9 +1,7 @@
 fileFormatVersion: 2
-guid: f07bfe1175da213488aa8905cd025461
+guid: 49d5baf48a0fc4ad8b0eb6c82ae4f5cd
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: cab
-    21300002: Ship
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -23,13 +21,13 @@ TextureImporter:
   grayScaleToAlpha: 0
   generateCubemap: 0
   seamlessCubemap: 0
-  textureFormat: -3
+  textureFormat: -1
   maxTextureSize: 1024
   textureSettings:
-    filterMode: 0
-    aniso: 1
+    filterMode: -1
+    aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50

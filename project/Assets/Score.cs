@@ -33,7 +33,7 @@ public class Score : MonoBehaviour {
         player2Score.text = ""+player2.score;
 
 		if (player1.score >= 2 || player2.score >= 2) {
-			UnitySplitForce.SFVariation v = UnitySplitForce.SFManager.Instance.getExperiment("testExperiment");
+			UnitySplitForce.SFVariation v = UnitySplitForce.SFManager.Instance.initExperiment("testExperiment");
 			
 			if (v != null) {
 				
