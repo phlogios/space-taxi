@@ -42,7 +42,7 @@ public class Score : MonoBehaviour {
 			postData.AddField("eventType", "battle.won");
 			postData.AddField("userId", 3133731337);
 			postData.AddField("userName", "developer");
-			postData.AddField("productKey", "a32e6578-17b7-11e4-930a-bc764e1c05e4");
+			postData.AddField("productKey", "8b0f4ec7-656c-11e4-acb0-b8e8563b3f9a");
 			postData.AddField("sessionId", "fff324c6-30a2-11e3-ad80-485d60066bda");
 
 			JSONObject eventData = new JSONObject(JSONObject.Type.OBJECT);

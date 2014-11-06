@@ -198,7 +198,7 @@ public class Ship : MonoBehaviour {
 				accidents++;
 			}
 
-            Transform explosionObject = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity) as Transform;
+            Transform explosionObject = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, -2.0f), Quaternion.identity) as Transform;
             if (selfDestroyed)
             {
                 Explosion e = explosionObject.GetComponent<Explosion>();
