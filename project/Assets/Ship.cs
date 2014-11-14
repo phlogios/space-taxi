@@ -82,37 +82,33 @@ public class Ship : MonoBehaviour {
 	void Update () {
 		
 		//MOVEMENT
-		
-		bool pressingL = Input.GetButton(buttonLeft);
-		bool pressingR = Input.GetButton(buttonRight);
-        bool shooting = false;
-		foreach(Touch touch in Input.touches) {
-			if(touch.position.x / Screen.width > 0.5f && touch.position.y / Screen.height < 0.5f) {
-				pressingR = true;	
-			}
-            else if (touch.position.x / Screen.width < 0.5f && touch.position.y / Screen.height < 0.5f)
-            {
-				pressingL = true;
-			}
-            if (touch.position.y / Screen.height > 0.5f)
-            {
-                shooting = true;
-            }
-      	}
+		if (engineLeft && engineRight) {
+			bool pressingL = Input.GetButton (buttonLeft);
+			bool pressingR = Input.GetButton (buttonRight);
+			/*foreach (Touch touch in Input.touches) {
+					if (touch.position.x / Screen.width > 0.5f && touch.position.y / Screen.height < 0.5f) {
+							pressingR = true;	
+					} else if (touch.position.x / Screen.width < 0.5f && touch.position.y / Screen.height < 0.5f) {
+							pressingL = true;
+					}
+					if (touch.position.y / Screen.height > 0.5f) {
+							shooting = true;
+					}
+			}*/
 
-        if (pressingL)
-        {
-            
-            engineRight.Thrust();
-        }
+			if (pressingL) {
 
-        if (pressingR)
-        {
-            engineLeft.Thrust();
-        }
+					engineRight.Thrust ();
+			}
+
+			if (pressingR) {
+					engineLeft.Thrust ();
+			}
+		}
 		
 		
 		//SHOOTING
+		bool shooting = false;
         if (Input.GetButton(buttonShoot))
             shooting = true;
 		shootCooldown -= Time.deltaTime;
@@ -185,8 +181,13 @@ public class Ship : MonoBehaviour {
         //DEATH
         bool selfDestroyed = (selfdestroying && destructTimer <= 0.0f);
 		//DEATH
-        bool dead = cockpit.broken || selfDestroyed;
+		bool dead = false;;
+		if(cockpit)
+  	      dead = cockpit.broken || selfDestroyed;
 		if(dead) {
+			cockpit = null;
+			engineLeft = null;
+			engineRight = null;
             if (lastAttacker)
             {
                 Ship attackerShip = lastAttacker.GetComponent<Ship>();
@@ -205,6 +206,7 @@ public class Ship : MonoBehaviour {
                 e.force = 400.0f;
                 e.owner = transform.GetComponent<Ship>();
             }
+            
 			gameObject.SetActive(false);
 			
 			foreach(ParticleSystem particle in GetComponentsInChildren<ParticleSystem>(true)) {

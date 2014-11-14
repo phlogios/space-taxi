@@ -45,17 +45,21 @@ TagManager:
     userID: 1
     uniqueID: 170639779
     locked: 0
-  - name: Effects
-    userID: 4
-    uniqueID: 1458028799
-    locked: 0
   - name: Walls
     userID: 2
     uniqueID: 881759499
     locked: 0
+  - name: Effects
+    userID: 4
+    uniqueID: 1458028799
+    locked: 0
   - name: Ship
     userID: 3
     uniqueID: 1345091757
+    locked: 0
+  - name: WallTops
+    userID: 6
+    uniqueID: 2689707567
     locked: 0
   - name: GUI
     userID: 5

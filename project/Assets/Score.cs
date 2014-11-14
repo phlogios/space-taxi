@@ -33,7 +33,7 @@ public class Score : MonoBehaviour {
         player1Score.text = ""+player1.score;
         player2Score.text = ""+player2.score;
 
-		if (player1.score >= 2 || player2.score >= 2) {
+		if (player1.score >= 5 || player2.score >= 5) {
 			//C#
 			JSONObject postData = new JSONObject(JSONObject.Type.OBJECT);
 			postData.AddField("build", "0.1");

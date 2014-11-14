@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Part : MonoBehaviour {
 	
-	public int maxhp = 3;
-    public int explodehp = -5;
+	public int maxHP = 3;
+    public int explodeHP = -5;
 	public Transform partExplosion;
 
     public bool brokeThisFrame;
@@ -30,25 +30,40 @@ public class Part : MonoBehaviour {
 	}
 	
 	public void respawn() {
-		hp = maxhp;
+		hp = maxHP;
 		GetComponent<SpriteRenderer>().sprite = sprites[0];
+		Destroy (GetComponent<Rigidbody2D> ());
+		Destroy (null);
 		gameObject.SetActive(true);
 	}
-	
+
+	public void explode() {
+		gameObject.SetActive(false);
+		GameObject.Instantiate(partExplosion, transform.position, Quaternion.identity);
+	}
+
 	void OnCollisionEnter2D(Collision2D col) {
 		float velocity = Mathf.Abs(Vector3.Dot(col.relativeVelocity, col.contacts[0].normal.normalized));
 		
 		Bullet bullet = col.contacts[0].collider.GetComponent<Bullet>();
-        Part otherShip = col.contacts[0].collider.GetComponent<Part>();
-        if (otherShip != null)
+        Part otherPart = col.contacts[0].collider.GetComponent<Part>();
+        if (otherPart != null && transform.parent)
         {
-            transform.GetComponentInParent<Ship>().lastAttacker = otherShip.GetComponentInParent<Ship>();
-            Debug.Log("Attacked!");
+			Ship otherShip = otherPart.GetComponentInParent<Ship>();
+			Ship myShip = transform.GetComponentInParent<Ship>();
+			if(otherShip) {
+            	myShip.lastAttacker = otherPart.GetComponentInParent<Ship>();
+            	Debug.Log("Attacked!");
+			}
         }
 
 		if(bullet != null) {
 			hp -= (int) bullet.damage;
-            transform.GetComponentInParent<Ship>().lastAttacker = bullet.shooter;
+			Ship myShip = transform.GetComponentInParent<Ship>();
+			if(myShip) {
+            	myShip.lastAttacker = bullet.shooter;
+			}
+			Destroy (bullet.gameObject);
 			//Debug.Log("1 Dmg (bullet)");
 		}
 		else if(velocity > 5) {
@@ -72,14 +87,20 @@ public class Part : MonoBehaviour {
 		}
 
 
-		if(hp <= explodehp) {
-			gameObject.SetActive(false);
-			GameObject.Instantiate(partExplosion, transform.position, Quaternion.identity);
+		if(hp <= explodeHP) {
+			if(detachChildrenOnDeath) {
+				Part[] childParts = transform.GetComponentsInChildren<Part>();
+				foreach(Part childPart in childParts) {
+					Rigidbody2D rg = childPart.gameObject.AddComponent("Rigidbody2D") as Rigidbody2D;
+				}
+				transform.DetachChildren();
+			}
+			explode();
 		}
 		
 		
 		int cappedHP = Mathf.Max(0, hp);
-		int spriteIndex = Mathf.RoundToInt((sprites.Length-1) * (float)(maxhp-cappedHP) / maxhp);
+		int spriteIndex = Mathf.RoundToInt((sprites.Length-1) * (float)(maxHP-cappedHP) / maxHP);
 		if(spriteIndex == sprites.Length - 1 && hp > 0 && sprites.Length > 1)
 			spriteIndex = sprites.Length - 2;
 		

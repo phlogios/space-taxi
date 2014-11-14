@@ -42,12 +42,14 @@ public class Thruster : MonoBehaviour {
         {
             transform.GetComponentInChildren<Particles>().on = true;
 
-            GetComponentInParent<Rigidbody2D>().AddForceAtPosition(
-            GetComponentInParent<Transform>().up * force * Time.deltaTime, transform.TransformPoint(0, 0, 0));
-            if (!audio.isPlaying)
-            {
-                audio.Play();
-            }
+			if(transform.parent) {
+	            GetComponentInParent<Rigidbody2D>().AddForceAtPosition(
+	            GetComponentInParent<Transform>().up * force * Time.deltaTime, transform.TransformPoint(0, 0, 0));
+	            if (!audio.isPlaying)
+	            {
+	                audio.Play();
+	            }
+			}
         }
         else
         {
