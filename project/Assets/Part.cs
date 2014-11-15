@@ -15,9 +15,22 @@ public class Part : MonoBehaviour {
 			return hp <= 0;
 		}
 	}
+	public bool detached { get; private set; }
+	
 	public Sprite[] sprites;
+	
 	int hp;
     bool brokenLastFrame = false;
+	Quaternion originalRotation;
+	Vector3 originalOffset;
+	Transform originalParent;
+	
+	void Awake() {
+		//Must be called before Start of the ship, so we put it in awake:
+		originalRotation = transform.localRotation;
+		originalOffset = transform.localPosition;
+		originalParent = transform.parent;
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -33,10 +46,16 @@ public class Part : MonoBehaviour {
 		hp = maxHP;
 		GetComponent<SpriteRenderer>().sprite = sprites[0];
 		Destroy (GetComponent<Rigidbody2D> ());
-		Destroy (null);
+		
+		transform.parent = originalParent;
+		transform.localRotation = originalRotation;
+		transform.localPosition = originalOffset;
+		
+		detached = false;
+		
 		gameObject.SetActive(true);
 	}
-
+	
 	public void explode() {
 		gameObject.SetActive(false);
 		GameObject.Instantiate(partExplosion, transform.position, Quaternion.identity);
@@ -91,6 +110,7 @@ public class Part : MonoBehaviour {
 			if(detachChildrenOnDeath) {
 				Part[] childParts = transform.GetComponentsInChildren<Part>();
 				foreach(Part childPart in childParts) {
+					childPart.detached = true;
 					Rigidbody2D rg = childPart.gameObject.AddComponent("Rigidbody2D") as Rigidbody2D;
 				}
 				transform.DetachChildren();

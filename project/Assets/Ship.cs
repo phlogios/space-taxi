@@ -28,13 +28,19 @@ public class Ship : MonoBehaviour {
     public Ship lastAttacker = null;
 
     float lastAttackerCooldown = 2.0f;
-
+	
+	bool dead;
 	float shootCooldown;
     float reloadProgress;
     int ammo;
 	bool selfdestroying = false;
 	float destructTimer;
 	string prevDestructTimerText;
+	Part[] childParts;
+	
+	void Awake() {
+		childParts = GetComponentsInChildren<Part>(true);
+	}
 	
 	void Start () {
 		accidents = 0;
@@ -42,6 +48,7 @@ public class Ship : MonoBehaviour {
 	}
 	
 	public void respawn() {
+		dead = false;
         lastAttacker = null;
         lastAttackerCooldown = 2.0f;
 		shootCooldown = 0.0f;
@@ -73,7 +80,7 @@ public class Ship : MonoBehaviour {
 		gameObject.SetActive(true);
 		GameObject.Instantiate(spawnEffect, spawnPos, Quaternion.identity);
 		
-		foreach(Part part in GetComponentsInChildren<Part>(true)) {
+		foreach(Part part in childParts) {
 			part.respawn();
 		}
 	}
@@ -81,31 +88,31 @@ public class Ship : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		//MOVEMENT
-		if (engineLeft && engineRight) {
-			bool pressingL = Input.GetButton (buttonLeft);
-			bool pressingR = Input.GetButton (buttonRight);
-			/*foreach (Touch touch in Input.touches) {
-					if (touch.position.x / Screen.width > 0.5f && touch.position.y / Screen.height < 0.5f) {
-							pressingR = true;	
-					} else if (touch.position.x / Screen.width < 0.5f && touch.position.y / Screen.height < 0.5f) {
-							pressingL = true;
-					}
-					if (touch.position.y / Screen.height > 0.5f) {
-							shooting = true;
-					}
-			}*/
-
-			if (pressingL) {
-
-					engineRight.Thrust ();
-			}
-
-			if (pressingR) {
-					engineLeft.Thrust ();
-			}
-		}
+		if(dead)
+			return;
 		
+		//MOVEMENT
+		bool pressingL = Input.GetButton (buttonLeft);
+		bool pressingR = Input.GetButton (buttonRight);
+		/*foreach (Touch touch in Input.touches) {
+			if (touch.position.x / Screen.width > 0.5f && touch.position.y / Screen.height < 0.5f) {
+					pressingR = true;	
+			} else if (touch.position.x / Screen.width < 0.5f && touch.position.y / Screen.height < 0.5f) {
+					pressingL = true;
+			}
+			if (touch.position.y / Screen.height > 0.5f) {
+					shooting = true;
+			}
+		}*/
+
+		if (pressingL && !engineRight.GetComponent<Part>().detached) {
+
+				engineRight.Thrust ();
+		}
+
+		if (pressingR && !engineLeft.GetComponent<Part>().detached) {
+				engineLeft.Thrust ();
+		}
 		
 		//SHOOTING
 		bool shooting = false;
@@ -181,13 +188,10 @@ public class Ship : MonoBehaviour {
         //DEATH
         bool selfDestroyed = (selfdestroying && destructTimer <= 0.0f);
 		//DEATH
-		bool dead = false;;
-		if(cockpit)
-  	      dead = cockpit.broken || selfDestroyed;
+		
+  	    dead = cockpit.broken || selfDestroyed;
+		
 		if(dead) {
-			cockpit = null;
-			engineLeft = null;
-			engineRight = null;
             if (lastAttacker)
             {
                 Ship attackerShip = lastAttacker.GetComponent<Ship>();
