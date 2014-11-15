@@ -82,7 +82,6 @@ public class Part : MonoBehaviour {
 			if(myShip) {
             	myShip.lastAttacker = bullet.shooter;
 			}
-			Destroy (bullet.gameObject);
 			//Debug.Log("1 Dmg (bullet)");
 		}
 		else if(velocity > 5) {

@@ -31,6 +31,10 @@ public class Thruster : MonoBehaviour {
     void Update()
     {
         broken = transform.GetComponent<Part>().broken;
+		if (!transform.parent && !broken) {
+			catastrophe = true;
+			thrusting = true;	
+		}
 
         if (transform.GetComponent<Part>().brokeThisFrame)
         {
@@ -45,10 +49,15 @@ public class Thruster : MonoBehaviour {
 			if(transform.parent) {
 	            GetComponentInParent<Rigidbody2D>().AddForceAtPosition(
 	            GetComponentInParent<Transform>().up * force * Time.deltaTime, transform.TransformPoint(0, 0, 0));
-	            if (!audio.isPlaying)
-	            {
-	                audio.Play();
-	            }
+
+			} else {
+				if(GetComponent<Rigidbody2D>()) {
+					rigidbody2D.AddForceAtPosition(transform.up * force * 2 * Time.deltaTime, transform.TransformPoint(0, 0, 0));
+				}
+			}
+			if (!audio.isPlaying)
+			{
+				audio.Play();
 			}
         }
         else
